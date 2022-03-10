@@ -7,7 +7,6 @@ const
     bodyParser = require('body-parser'),
     config = require('./config'),
     app = express();
-    app=dd;
 
 // BASE SETUP
 // ==============================================
