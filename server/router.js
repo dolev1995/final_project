@@ -20,7 +20,18 @@ const router = (app, express) => {
 			funcName = action || "add";
 		apiHandler(req, res, funcName, req.body);
 	});
+	
+	app.get('/test', (req, res) => {
+		defaultController.addUser(req,res).then(() => res.status(200).send({}));
 
+	});
+	app.post('/user/add/test', (req, res) => {
+		console.log("rout");
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		defaultController.addUser(req,res).then(() => res.status(200).send({}));
+
+	});
 	const apiHandler = (req, res, funcName, data) => {
 		try {
 			let useDefaultController = true, controller;
@@ -71,6 +82,9 @@ const router = (app, express) => {
 	};
 
 };
+
+
+
 
 
 

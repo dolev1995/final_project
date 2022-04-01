@@ -14,28 +14,32 @@ class Register extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    handleChange(event, fieldName) {
+        this.setState({[fieldName]: event.target.value});
       }
       handleSubmit(event) {
         event.preventDefault();
         //alert('שכוייח ' + this.state.value+' ' +'אנחנו מאמינים בך');
+        console.log("submit");
+       this.handleRegister(event);
+
       }
 
       handleRegister(e) {
-        console.log("name====" + this.firstName.value);
-        console.log("email====" + this.email.value);
-        console.log("password====" + this.password.value);
+        // console.log("name====" + this.firstName.value);
+        // console.log("email====" + this.email.value);
+        // console.log("password====" + this.password.value);
+        console.log("register");
         const newUser = {
         	name: {
-				first: this.firstName.value,
-				last: this.lastName.value
+				first: this.state.firstName,
+				last: this.state.lastName
 			},
-            password: this.password.value,
-			email: this.email.value
+            password: this.state.password,
+			email: this.state.email
 
         };
-        this.userAdd(newUser);
+        userAdd(newUser).then(() => console.log('ok')).catch(err =>  console.log('err',err));
       }
 
 	render() {
@@ -46,10 +50,10 @@ class Register extends Component {
                 <h3>הרשמה</h3>
                 </div>
 				<form onSubmit={this.handleSubmit}>
-                <input placeholder="שם פרטי*" type="text" value={this.setState.value} ref="firstName" className='inputRegister' onChange={this.handleChange} required/>
-					<input placeholder="שם משפחה*" type="text" ref="lastName" className='inputRegister' required/>
-                    <input placeholder="מייל*" type="text" ref="email" className='inputRegister' required/>
-					<input placeholder="סיסמה*" type="password" ref="password" className='inputRegister' required/>
+                <input placeholder="שם פרטי*" type="text" value={this.state.fieldName} ref="firstName" className='inputRegister' onChange={(event) => this.handleChange(event,"firstName" )} required/>
+					<input placeholder="שם משפחה*" type="text" value={this.state.fieldName} ref="lastName" className='inputRegister' onChange={(event) => this.handleChange(event,"lastName" )} required/>
+                    <input placeholder="מייל*" type="text" value={this.state.fieldName} ref="email" className='inputRegister'  onChange={(event) => this.handleChange(event,"email" )} required/>
+					<input placeholder="סיסמה*" type="password"  value={this.state.fieldName} ref="password" className='inputRegister'  onChange={(event) => this.handleChange(event,"password" )} required/>
 					<input type='submit' className="btn main-btn" value='הרשמה'/>
 				</form>
             </div>

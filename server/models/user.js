@@ -9,21 +9,21 @@ const UserSchema = new Schema({
 	name: {
 		first: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		last: {
 			type: String,
-			required: true,
+			required: false,
 		}
 	},
 	password: {
 		type: String,
-		required: true,
+		required: false,
 		select: false
 	},
 	email: {
 		type: String,
-		required: true,
+		required: false,
 		dropDups: true,
 		unique: true,
 		index: true

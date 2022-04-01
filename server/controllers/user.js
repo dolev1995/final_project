@@ -1,4 +1,6 @@
 'use strict';
+const { getMaxListeners } = require('process');
+const Item = require('../models/user')
 const mongoose = require('mongoose'),
 	crypto = require('crypto'),
 	defaultAdd = require('./index').default_add,
@@ -8,89 +10,51 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 
 
-function addUser(User, data = {}) {
-		emailFilter = data.email ? [{email: data.email}] : [],
-		filter = {$or: [...(emailFilter), ...(phoneFilter), ...(tzFilter)]}
-	return new Promise((resolve, reject) =>
-		User.findOne(filter)
-		.then(user => {
-			if (user) reject({message: 'user already exists', code: 422});
-			resolve({data, toDefault: true})
-		}).catch(reject)
-	)
+// function addUser(User, data = {}) {
+// 	const item = Item.create(User);
+// 		emailFilter = data.email ? [{email: data.email}] : [],
+// 		filter = {$or: [...(emailFilter), ...(phoneFilter), ...(tzFilter)]}
+// 	return new Promise((resolve, reject) =>
+// 		User.findOne(filter)
+// 		.then(user => {
+// 			if (user) reject({message: 'user already exists', code: 422});
+// 			resolve({data, toDefault: true})
+// 		}).catch(reject)
+// 	)
+// }
+
+
+// exports.addUser = asyncHandler(async (req, res, next) => {
+//     const item = await Item.create(req.body);
+//     res.status(201).json({
+//         success: true,
+//         data: item
+//     });
+// }
+// );
+
+async function  asyncHandler (req, res, next)  {
+	console.log('hooo');
+   console.log(req.body);
+   const body = req.body;
+	const item = await Item.create({
+		email : body.email,
+		 name: {
+			firstName:body.firstName, 
+			lastName: body.lastName
+		},
+		password: body.password 
+	});
+ 
 }
 
-
-
-exports.app_register = function (userModel, userData) {
-	const emailFilter = userData.email ? [{email: userData.email}] : [],
-		phoneFilter = userData.phone ? [{phone: userData.phone}] : [],
-		filter = {$or: [...(emailFilter), ...(phoneFilter)]};
-	return new Promise((resolve, reject) => {
-		if (!userData.email)
-			return reject({message: {err: 'email is missing'}, code: 400});
-		if (!userData.name)
-			reject({message: {err: 'name is missing'}, code: 400});
-		if (!userData.password) {
-			return reject({message: {err: 'password is missing'}, code: 400});
-
-		}
-		userModel.findOne(filter)
-		.then(user => {
-			if (user) {
-				if (userData.type === 'google')
-					return resolve(user);
-				if (user.email === userData.email)
-					return reject({"message": "email already exist", "code": "422"});
-				if (user.phone === userData.phone)
-					return reject({"message": "phone already exist", "code": "422"});
-				return reject({"message": "user already exist", code: 422});
-			}
-
-			const newUser = new userModel();
-			const fullName = userData.name;
-			const index = fullName.indexOf(" ") > 0 ? fullName.indexOf(" ") : fullName.length;
-			const firstName = fullName.substr(0, index).trim();
-			let lastName = fullName.substr(index + 1).trim();
-			if (!firstName)
-				return reject({"message": "first name is missing", "code": 422});
-			if (!lastName)
-				lastName = '.';
-			if (userData.type) {
-				newUser[`${userData.type}Token`] = userData.password
-				newUser.registerType = userData.type
-			}
-			newUser.name.first = firstName;
-			newUser.name.last = lastName;
-			newUser.email = userData.email;
-			newUser.phone = userData.phone;
-			newUser.password = userData.password;
-			newUser.tithalal = true;
-			const StudyingSchedule = require('../models/studyingSchedule');
-			StudyingSchedule.findOne({name: "תתהלל"}).then(studyingSchedule => {
-				newUser.studyingScheduleID = studyingSchedule._id;
-				newUser.save().then((user) => {
-					user.password = undefined;
-					resolve(user)
-				})
-				.catch(err => {
-					console.log(err);
-					return reject({message: err.message, code: 500})
-				})
-			})
-			.catch(err => reject({message: 'no studying schedule tithalal', code: 500}))
-
-		})
-		.catch(err => {
-			console.log(err);
-			return reject({message: 'error', code: 500})
-		})
-	})
-}
+exports.addUser = asyncHandler;
 
 
 
-exports.add = addUser;
+
+
+exports.add = asyncHandler;
 
 
 const filter = function (User, {filter = {}, search, skip = 0, limit = 50, keys = [], sort = {}}) {
