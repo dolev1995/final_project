@@ -57,6 +57,37 @@ exports.addUser = asyncHandler;
 exports.add = asyncHandler;
 
 
+async function asyncHandlerLogin (req, res, next)  {
+
+    try {
+        const items = await Item.find({ItemName:req.params.email});
+        if (!items) {
+            res.status(404).json({ success: false });
+        }
+        res.status(200).json({ success: true, data: items });
+    } catch (err) {
+        res.status(400).json({ error: err });
+
+    }
+
+};
+
+exports.loginUser = asyncHandlerLogin;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const filter = function (User, {filter = {}, search, skip = 0, limit = 50, keys = [], sort = {}}) {
 
 	const dotenv = require('dotenv');

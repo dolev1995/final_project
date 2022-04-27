@@ -1,16 +1,37 @@
 import React, { Component } from 'react'
+import { useNavigate } from "react-router-dom";
+import { withParams } from "./Hoc";
+
 import './App.css';
+
+// import { useNavigate } from "react-router-dom";
 
 
 class Login extends Component {
+    // constructor() {
+    //     ///this.navigate = useNavigate();
+    // }
 
+    handleSend= async(event,url) => {
+        event.preventDefault();
+        // this.props.history.push('/Sidebar');
+        //this.navigate(url);
+    }
 
-    handleSubmit(e) {
+    handleSubmit= (e)=>  {
 		e.preventDefault();
-		alert("welcome to mySite")
-	}
-    render() {
+		//alert("welcome to mySite")
+        console.log(this.props)
 
+        // if connection success
+        // handleSend(e,'/Sidebar')
+        //this.props.history.push('/Sidebar');
+        this.props.navigate('/Sidebar')
+
+	}
+
+    render() {
+        console.log(this.props)
 
         return (
             <div className="login">
@@ -30,4 +51,4 @@ class Login extends Component {
 
     }
 }
-export default Login;
+export default withParams(Login);

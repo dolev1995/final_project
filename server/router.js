@@ -32,6 +32,20 @@ const router = (app, express) => {
 		defaultController.addUser(req,res).then(() => res.status(200).send({}));
 
 	});
+
+	app.post('/user/login/test', (req, res) => {
+		console.log("login test");
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		defaultController.loginUser(req,res).then(() => res.status(200).send({}));
+
+	});
+
+
+
+
+
+
 	const apiHandler = (req, res, funcName, data) => {
 		try {
 			let useDefaultController = true, controller;
