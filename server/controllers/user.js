@@ -37,14 +37,13 @@ async function  asyncHandler (req, res, next)  {
 	console.log('hooo');
    console.log(req.body);
    const body = req.body;
-	const item = await Item.create({
+   const data = {
 		email : body.email,
-		 name: {
-			firstName:body.firstName, 
-			lastName: body.lastName
-		},
+		name: body.name,
 		password: body.password 
-	});
+	}
+	console.log(data);
+	const item = await Item.create(data);
  
 }
 
@@ -60,13 +59,28 @@ exports.add = asyncHandler;
 async function asyncHandlerLogin (req, res, next)  {
 
     try {
-        const items = await Item.find({ItemName:req.params.email});
-        if (!items) {
-            res.status(404).json({ success: false });
+		const {email, password } = req.body;
+        //const items = await Item.find({email});
+		console.log('asyncHandlerLogin email: ' , email);
+		console.log('asyncHandlerLogin password: ' , password);
+
+		const items = await Item.findOne({email}).exec();
+
+		console.log('asyncHandlerLogin items: ' , items);
+		console.log('asyncHandlerLogin items.password: ' , items. password);
+		console.log('asyncHandlerLogin items.email: ' , items.email);
+
+		const isVaild = Item.validPassword(password,items.password)
+		console.log('asyncHandlerLogin isVaild: ' , isVaild);
+
+        if (!items || !items.password || !password || !isVaild) {
+            return res.status(404).json({ success: false });
         }
-        res.status(200).json({ success: true, data: items });
+        return res.status(200).json({ success: true, data: items });
     } catch (err) {
-        res.status(400).json({ error: err });
+		console.log(err)
+        return res.status(400).json({ error: err });
+
 
     }
 

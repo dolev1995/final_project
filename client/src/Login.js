@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { useNavigate } from "react-router-dom";
 import { withParams } from "./Hoc";
+import {userLogin} from './actions'
 
 import './App.css';
 
@@ -8,6 +9,19 @@ import './App.css';
 
 
 class Login extends Component {
+
+    constructor() {
+        super();
+        this.state = 
+        {
+            value: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleChange(event, fieldName) {
+        this.setState({[fieldName]: event.target.value});
+      }
     // constructor() {
     //     ///this.navigate = useNavigate();
     // }
@@ -26,7 +40,25 @@ class Login extends Component {
         // if connection success
         // handleSend(e,'/Sidebar')
         //this.props.history.push('/Sidebar');
-        this.props.navigate('/Sidebar')
+        // userLogin.
+        // this.props.navigate('/Sidebar')
+
+        console.log("register");
+        const existUser = {
+        	name: {
+				first: this.state.firstName,
+				last: this.state.lastName
+			},
+            password: this.state.password,
+			email: this.state.email
+
+        };
+        userLogin(existUser).then(res => {
+                console.log('res',res) ;   
+            if(res){
+                this.props.navigate('/Sidebar')
+            }
+        }).catch(err =>  console.log('err',err));
 
 	}
 
@@ -39,8 +71,8 @@ class Login extends Component {
 
                 <form onSubmit={this.handleSubmit}>
 
-                    <input className='inputRegister' placeholder="דואר אלקטרוני" type="email" ref="email" required />
-                    <input className='inputRegister' placeholder="סיסמה" type="password" ref="password" required />
+                    <input className='inputRegister' placeholder="דואר אלקטרוני" type="email" value={this.state.fieldName} ref="email" onChange={(event) => this.handleChange(event,"email" )} required />
+                    <input className='inputRegister' placeholder="סיסמה" type="password"  value={this.state.fieldName} ref="password" onChange={(event) => this.handleChange(event,"password" )} required />
 					<input type='submit' className="btn main-btn" value='התחברות'/>
 
 

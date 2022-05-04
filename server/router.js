@@ -37,7 +37,7 @@ const router = (app, express) => {
 		console.log("login test");
 		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
 
-		defaultController.loginUser(req,res).then(() => res.status(200).send({}));
+		return defaultController.loginUser(req,res)//.then(() => res.status(200).send({}));
 
 	});
 

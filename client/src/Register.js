@@ -1,54 +1,86 @@
-import React, { Component } from 'react'
-import { useNavigate } from "react-router-dom";
+import React, {Component} from 'react'
+import './App.css';
+import {userAdd} from './actions'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import { withParams } from "./Hoc";
 
-import './App.css';
-
-// import { useNavigate } from "react-router-dom";
-
-
-class Login extends Component {
-    // constructor() {
-    //     ///this.navigate = useNavigate();
-    // }
-
-    handleSend= async(event,url) => {
-        event.preventDefault();
-        // this.props.history.push('/Sidebar');
-        //this.navigate(url);
+class Register extends Component {
+    constructor() {
+        super();
+        this.state = 
+        {
+            value: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+    handleChange(event, fieldName) {
+        this.setState({[fieldName]: event.target.value});
+      }
+      handleSubmit(event) {
+        event.preventDefault();
+        //alert('שכוייח ' + this.state.value+' ' +'אנחנו מאמינים בך');
+        console.log("submit");
+       this.handleRegister(event);
 
-    handleSubmit= (e)=>  {
-		e.preventDefault();
-		//alert("welcome to mySite")
-        console.log(this.props)
+      }
 
-        // if connection success
-        // handleSend(e,'/Sidebar')
-        //this.props.history.push('/Sidebar');
-        this.props.navigate('/Sidebar')
+      handleRegister(e) {
+        // console.log("name====" + this.firstName.value);
+        // console.log("email====" + this.email.value);
+        // console.log("password====" + this.password.value);
+        console.log("register");
+        const newUser = {
+        	name: {
+				first: this.state.firstName,
+				last: this.state.lastName
+			},
+            password: this.state.password,
+			email: this.state.email
 
-	}
+        };
+        console.log('handleRegister newUser', newUser)
+        userAdd(newUser).then(() => {
+                console.log('ok') ;        
+            this.props.navigate('/Sidebar')
+        }).catch(err =>  console.log('err',err));
+      }
 
-    render() {
-        console.log(this.props)
+	render() {
 
-        return (
-            <div className="login">
-                <h3>כניסה</h3>
-
-                <form onSubmit={this.handleSubmit}>
-
-                    <input className='inputRegister' placeholder="דואר אלקטרוני" type="email" ref="email" required />
-                    <input className='inputRegister' placeholder="סיסמה" type="password" ref="password" required />
+		return (
+			<div className="register">
+                <div className='harshama'>
+                <h3>הרשמה</h3>
+                </div>
+				<form onSubmit={this.handleSubmit}>
+                <input placeholder="שם פרטי*" type="text" value={this.state.fieldName} ref="firstName" className='inputRegister' onChange={(event) => this.handleChange(event,"firstName" )} required/>
+					<input placeholder="שם משפחה*" type="text" value={this.state.fieldName} ref="lastName" className='inputRegister' onChange={(event) => this.handleChange(event,"lastName" )} required/>
+                    <input placeholder="מייל*" type="text" value={this.state.fieldName} ref="email" className='inputRegister'  onChange={(event) => this.handleChange(event,"email" )} required/>
+					<input placeholder="סיסמה*" type="password"  value={this.state.fieldName} ref="password" className='inputRegister'  onChange={(event) => this.handleChange(event,"password" )} required/>
 					<input type='submit' className="btn main-btn" value='הרשמה'/>
-
-
-                    </form>
+				</form>
             </div>
-
         );
-
     }
 }
-export default withParams(Login);
+
+
+function
+
+mapStateToProps(state) {
+	return {
+		user: state.user
+	};
+}
+
+function
+
+matchDispatchToProps(dispatch) {
+	return bindActionCreators({
+		userAdd
+	}, dispatch);
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(withParams(Register));
