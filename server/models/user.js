@@ -19,7 +19,6 @@ const UserSchema = new Schema({
 	password: {
 		type: String,
 		required: false,
-		select: false
 	},
 	email: {
 		type: String,
@@ -58,7 +57,7 @@ UserSchema.pre('update', function (next) {
 });
 
 
-UserSchema.methods.validPassword = (password, thisPass) => bcrypt.compareSync(password, thisPass);
+//UserSchema.methods.validPassword = (password, thisPass) => bcrypt.compareSync(password, thisPass);
 UserSchema.statics.userStudySchedule = function ({ filter = {}, search,limit = 5000 }) {
 	if (search) filter = helper.searchFilter(search, UserSchema.paths);
 	return this.find(filter).limit(limit).populate("studyingScheduleID");
@@ -66,4 +65,7 @@ UserSchema.statics.userStudySchedule = function ({ filter = {}, search,limit = 5
 
 // all the 'pre' function must before the model function
 const userModel = mongoose.model('user', UserSchema);
+
+userModel.validPassword = (password, thisPass) => bcrypt.compareSync(password, thisPass);
+
 module.exports = userModel;

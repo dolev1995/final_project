@@ -11,7 +11,12 @@ export const userAdd = (newUser) => {
 	const withCredentials = true;
 	return axios.post(baseApi + 'user/add/test', newUser);
 };
-
+export const userLogin = (newUser) => {
+	console.log('login user')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	return axios.post(baseApi + 'user/login/test', newUser);
+};
 
 
 
