@@ -37,14 +37,13 @@ async function  asyncHandler (req, res, next)  {
 	console.log('hooo');
    console.log(req.body);
    const body = req.body;
-	const item = await Item.create({
+   const data = {
 		email : body.email,
-		 name: {
-			firstName:body.firstName, 
-			lastName: body.lastName
-		},
+		name: body.name,
 		password: body.password 
-	});
+	}
+	console.log(data);
+	const item = await Item.create(data);
  
 }
 
@@ -55,6 +54,94 @@ exports.addUser = asyncHandler;
 
 
 exports.add = asyncHandler;
+
+
+async function asyncHandlerLogin (req, res, next)  {
+
+    try {
+		const {email, password } = req.body;
+        //const items = await Item.find({email});
+		console.log('asyncHandlerLogin email: ' , email);
+		console.log('asyncHandlerLogin password: ' , password);
+
+		const items = await Item.findOne({email}).exec();
+
+		console.log('asyncHandlerLogin items: ' , items);
+		console.log('asyncHandlerLogin items.password: ' , items. password);
+		console.log('asyncHandlerLogin items.email: ' , items.email);
+
+		const isVaild = Item.validPassword(password,items.password)
+		console.log('asyncHandlerLogin isVaild: ' , isVaild);
+
+        if (!items || !items.password || !password || !isVaild) {
+            return res.status(404).json({ success: false });
+        }
+        return res.status(200).json({ success: true, data: items });
+    } catch (err) {
+		console.log(err)
+        return res.status(400).json({ error: err });
+
+
+    }
+
+};
+
+exports.loginUser = asyncHandlerLogin;
+
+
+
+
+
+
+
+async function asyncHandlerGetUsers (req, res, next)  {
+
+    try {
+		
+
+		const items = await Item.find().exec();
+
+
+        if (!items) {
+            return res.status(404).json({ success: false });
+        }
+        return res.status(200).json({ success: true, data: items });
+    } catch (err) {
+		console.log(err)
+        return res.status(400).json({ error: err });
+
+
+    }
+
+};
+
+exports.getUser = asyncHandlerGetUsers;
+
+
+
+async function asyncHandlerGetUsersByEmail (req, res, next)  {
+
+	try {
+        const items = await Item.find({ItemName:req.params.email}).exec();
+        if (!items) {
+            res.status(404).json({ success: false });
+        }
+        res.status(200).json({ success: true, data: items });
+    } catch (err) {
+        res.status(400).json({ error: err });
+
+    }
+
+
+    };
+
+
+
+exports.getUserByEmail = asyncHandlerGetUsersByEmail;
+
+
+
+
 
 
 const filter = function (User, {filter = {}, search, skip = 0, limit = 50, keys = [], sort = {}}) {
@@ -130,5 +217,3 @@ const filter = function (User, {filter = {}, search, skip = 0, limit = 50, keys 
 };
 
 exports.filter = filter;
-
-

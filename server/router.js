@@ -32,6 +32,38 @@ const router = (app, express) => {
 		defaultController.addUser(req,res).then(() => res.status(200).send({}));
 
 	});
+
+	app.post('/user/login/test', (req, res) => {
+		console.log("login test");
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return defaultController.loginUser(req,res)//.then(() => res.status(200).send({}));
+
+	});
+
+
+
+
+	app.get('/Getuser', (req, res) => {
+		console.log("Getuser ");
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return defaultController.getUser(req,res)//.then(() => res.status(200).send({}));
+
+	});
+
+
+
+
+
+	app.get('/GetuserByEmail', (req, res) => {
+		console.log("GetuserByEmail ");
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return defaultController.getUserByEmail(req,res)//.then(() => res.status(200).send({}));
+
+	});
+
 	const apiHandler = (req, res, funcName, data) => {
 		try {
 			let useDefaultController = true, controller;

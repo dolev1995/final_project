@@ -3,6 +3,7 @@ import './App.css';
 import {userAdd} from './actions'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import { withParams } from "./Hoc";
 
 class Register extends Component {
     constructor() {
@@ -39,7 +40,11 @@ class Register extends Component {
 			email: this.state.email
 
         };
-        userAdd(newUser).then(() => console.log('ok')).catch(err =>  console.log('err',err));
+        console.log('handleRegister newUser', newUser)
+        userAdd(newUser).then(() => {
+                console.log('ok') ;        
+            this.props.navigate('/Sidebar', {email: "2dolev20"} )
+        }).catch(err =>  console.log('err',err));
       }
 
 	render() {
@@ -78,9 +83,4 @@ matchDispatchToProps(dispatch) {
 	}, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)
-
-(
-	Register
-)
-;
+export default connect(mapStateToProps, matchDispatchToProps)(withParams(Register));
