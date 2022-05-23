@@ -40,6 +40,8 @@ class Register extends Component {
 			email: this.state.email
 
         };
+
+   
         console.log('handleRegister newUser', newUser)
         userAdd(newUser).then(() => {
                 console.log('ok') ;        

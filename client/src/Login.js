@@ -56,6 +56,7 @@ class Login extends Component {
         userLogin(existUser).then(res => {
                 console.log('res',res) ;   
             if(res){
+                window.userProfile = res && res.data && res.data.data;
                 this.props.navigate('/Sidebar')
             }
         }).catch(err =>  console.log('err',err));

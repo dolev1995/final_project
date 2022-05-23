@@ -6,6 +6,7 @@ const defaultController = require("./controllers/user"),
 	User = require('./models/user'),
 	fs = require("fs")
 
+	const testController = require("./controllers/TestC");
 
 
 
@@ -16,35 +17,111 @@ const router = (app, express) => {
 	// API
 	// ==============================================
 	app.post('/api/:collection/:action*?', (req, res) => {
+		console.log('/api/:collection/:action')
 		const {action} = req.params,
 			funcName = action || "add";
 		apiHandler(req, res, funcName, req.body);
 	});
 	
-	app.get('/test', (req, res) => {
-		defaultController.addUser(req,res).then(() => res.status(200).send({}));
+	// app.get('/test', (req, res) => {
+	// 	console.log('/test')
 
-	});
+	// 	defaultController.addUser(req,res).then(() => res.status(200).send({}));
+
+	// });
 	app.post('/user/add/test', (req, res) => {
-		console.log("rout");
+		console.log('/user/add/test')
 		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
 
 		defaultController.addUser(req,res).then(() => res.status(200).send({}));
 
 	});
 
+	app.post('/user/check/test', (req, res) => {
+		console.log('/user/check/test')
+
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return defaultController.checkGrade(req,res)//.then(() => res.status(200).send({}));
+
+	});
+
 	app.post('/user/login/test', (req, res) => {
-		console.log("login test");
+		console.log('/user/login/test')
+
 		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
 
 		return defaultController.loginUser(req,res)//.then(() => res.status(200).send({}));
 
 	});
+	app.get('/ShowAllTest', (req, res) => {
+		console.log('/ShowAllTest')
+
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return testController.ShowAllTest(req,res)//.then(() => res.status(200).send({}));
+
+	});
+
+	app.get('/ShowAllTest', (req, res) => {
+		console.log('/ShowAllTest')
+
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return testController.Test(req,res)//.then(() => res.status(200).send({}));
+
+	});
+
+	app.get('/ShowAllClasses', (req, res) => {
+		console.log('/ShowAllClasses')
+
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return testController.ShowAllClasses(req,res)//.then(() => res.status(200).send({}));
+
+	});
+
+	app.get('/ShowTestsByClassId', (req, res) => {
+		console.log('/ShowTestsByClassId')
+
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return testController.ShowTestsByClassId(req,res)//.then(() => res.status(200).send({}));
+
+	});
+	app.get('/ShowTestById', (req, res) => {
+		console.log('/ShowTestById')
+
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return testController.ShowTestById(req,res)//.then(() => res.status(200).send({}));
+
+	});
+	
 
 
+	app.get('/test', (req, res) => {
+		console.log("/test");
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
 
+		return testController.Test(req,res)//.then(() => res.status(200).send({}));
 
+	});
+	app.get('/ShowGrade', (req, res) => {
+		console.log("/ShowGrade");
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
 
+		return defaultController.UserGrade(req,res)//.then(() => res.status(200).send({}));
+
+	});
+
+	app.get('/GradeCalculation', (req, res) => {
+		console.log("/GradeCalculation");
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return testController.Test(req,res)//.then(() => res.status(200).send({}));
+
+	});
 
 	const apiHandler = (req, res, funcName, data) => {
 		try {

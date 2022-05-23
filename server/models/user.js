@@ -4,6 +4,13 @@ const mongoose = require('mongoose'),
 	bcrypt = require('bcryptjs'),
 	SALT_WORK_FACTOR = 10;
 
+	const gradesSchema = new Schema({		
+		testId: Number,
+		testName: String,
+		classId:Number,
+		ClasseName:String,
+		grade:Number
+	})
 
 const UserSchema = new Schema({
 	name: {
@@ -27,7 +34,10 @@ const UserSchema = new Schema({
 		unique: true,
 		index: true
 	},
-
+	grades:{
+		type: [gradesSchema],
+		required: false
+	}
 
 });
 
@@ -36,6 +46,8 @@ UserSchema.pre('save', function (next) {
 	if (!this.isModified('password')) return next();
 	bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
 		if (err) return next(err);
+
+
 		bcrypt.hash(this.password, salt, (err, hash) => {
 			if (err) return next(err);
 			this.password = hash;
@@ -57,7 +69,7 @@ UserSchema.pre('update', function (next) {
 });
 
 
-//UserSchema.methods.validPassword = (password, thisPass) => bcrypt.compareSync(password, thisPass);
+UserSchema.methods.validPassword = (password, thisPass) => bcrypt.compareSync(password, thisPass);
 UserSchema.statics.userStudySchedule = function ({ filter = {}, search,limit = 5000 }) {
 	if (search) filter = helper.searchFilter(search, UserSchema.paths);
 	return this.find(filter).limit(limit).populate("studyingScheduleID");

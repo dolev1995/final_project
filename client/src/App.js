@@ -6,12 +6,14 @@ import Register from './Register'
 import Login from './Login'
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Sidebar from './Sidebar'
+import Sidebar from './components/sidbar/Sidebar'
 // import Home from '@mui/icons-material/Home';
-import Home from './page/Home';
-
-import Profile from './page/Profile';
-import Test from './page/Test';
+import Home from './components/page/Home';
+import Profile from './components/page/Profile';
+import Test from './components/tests-by-class/ChooseTest';
+import WarsixDay from './components/test/Test';
+import Class from './components/Classes/Class'
+import Grade from './components/page/viewGrade'
 
 //import Grade from './page/Grade';
 
@@ -20,7 +22,7 @@ import Test from './page/Test';
 
 
 function App() {
-
+console.log('App')
   return (
     <div>
       <Router>
@@ -35,6 +37,11 @@ function App() {
           <Route exact path="/Home" element={<Home />} /> 
           <Route exact path="/Profile" element={<Profile />} />
           <Route exact path="/Test" element={<Test />} />
+          <Route exact path="/class" element={<Class />} />
+          <Route exact path="/Grade" element={<Grade />} />
+
+
+          <Route exact path="/warsixDay" element={<WarsixDay />} />
           {/* <Route exact path="/Grade" element={<Grade />} /> */}
             <Route exact path="*" The page not found />  
 

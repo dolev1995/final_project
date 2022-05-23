@@ -1,10 +1,38 @@
-import React from "react";
-function Grade (){
-   return (
-       <div className="Grade">
-        <h1>Grade</h1>
+// import React  from "react";
+// import {ShowGrade} from './actions'
+// export default function Grade() {
+   
+//     console
 
-       </div>
-   )
-}
-export default Grade
+//     handleGrade= (e)=>  {
+//         e.preventDefault();
+//         console.log(this.props)
+//         const grades = queryParams.get("grades");
+
+//         console.log("grade");
+//         const existUserGreade = {
+        
+// 			email: this.state.email,
+//             grades: this.state.grades,
+//         };
+//         ShowGrade(existUserGreade).then(res => {
+//             console.log('res',res) ;   
+//         if(res){
+//             this.props.navigate('/Grade')
+//         }
+//     }).catch(err =>  console.log('err',err));
+        
+//     }
+
+
+    
+//     return (
+
+//         <div className="Grade">
+
+//         </div>
+//          );
+        
+//     }
+
+

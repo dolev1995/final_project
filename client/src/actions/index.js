@@ -18,6 +18,77 @@ export const userLogin = (newUser) => {
 	return axios.post(baseApi + 'user/login/test', newUser);
 };
 
+export const ShowTest = testId => {
+	console.log('ShowTest')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	const params= {
+		testId
+	}
+	return axios.get(baseApi + 'ShowTest',params );
+};
+export const CheckGrade = data => {
+	console.log('ShowTest')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	return axios.post(baseApi + 'user/check/test',data );
+};
+
+
+export const ShowAllClasses = testId => {
+	console.log('ShowTest')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	return axios.get(baseApi + 'ShowAllClasses' );
+};
+
+
+export const ShowTestsByClassId = classId => {
+	console.log('ShowTest')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	const params = {
+		classId
+	}
+	return axios.get(baseApi + 'ShowTestsByClassId',{ params} );
+};
+
+
+export const ShowTestById = testId => {
+	console.log('ShowTest')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	const params = {
+		testId
+	}
+	return axios.get(baseApi + 'ShowTestById',{ params} );
+};
+
+export const ShowGrade = grades => {
+	console.log('ShowGrade')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	const params = {
+		grades
+	}
+	return axios.get(baseApi + 'ShowGrade',{ params} );
+};
+
+export const GradeCalculation = AnswerId => {
+	console.log('GradeCalculation')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	const params = {
+		AnswerId
+	}
+	return axios.get(baseApi + 'GradeCalculation',{ params} );
+};
+export const  QustetionTest = () => {
+	console.log(' Qustetion')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	return axios.post(baseApi + 'Qustetion', );
+};
 
 
 // export const userAdd = (newUser) => {

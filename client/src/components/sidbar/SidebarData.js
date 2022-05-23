@@ -12,9 +12,9 @@ export const SidebarData =[
     },
  
     {
-        title: "Test",
+        title: "Test21",
         icon: <QuestionAnswerIcon />,
-        link: "/Test"
+        link: "/Class"
     },
     {
         title: "Grade",

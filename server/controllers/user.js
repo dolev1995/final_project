@@ -1,6 +1,8 @@
 'use strict';
 const { getMaxListeners } = require('process');
 const Item = require('../models/user')
+const Test = require('../models/TestM')
+
 const mongoose = require('mongoose'),
 	crypto = require('crypto'),
 	defaultAdd = require('./index').default_add,
@@ -34,7 +36,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 // );
 
 async function  asyncHandler (req, res, next)  {
-	console.log('hooo');
+	console.log('hooo11');
    console.log(req.body);
    const body = req.body;
    const data = {
@@ -89,6 +91,69 @@ async function asyncHandlerLogin (req, res, next)  {
 exports.loginUser = asyncHandlerLogin;
 
 
+async function checkGrade (req, res, next)  {
+	try {
+		const {email, testId , testAnser} = req.body;
+		console.log('checkGrade',req.body)
+		const user = await Item.findOne({email}).exec();
+		const test = await Test.findOne({testId}).exec();
+		console.log('checkGrade user: ' , user);
+		console.log('checkGrade test: ' , test);
+		let counterRightansers = 0;
+
+		Object.entries(testAnser).map(([key, value]) => {
+			const currQuestion = test.questions.find(question => question.questionText === key);
+			if(currQuestion) {
+				const currAnser = currQuestion.ansers.find(anser => anser.AnswerText === value)
+				if(currAnser && currAnser.isTrue){
+					counterRightansers++;
+				}
+			}
+
+		});
+
+		const newGrade =		{ 
+			testId,
+			grade: (counterRightansers / Object.entries(testAnser).length) * 100,
+			testName:test.testName,
+			ClasseName:test.ClasseName,
+			classId: test.classId
+		}
+		console.log('newGrade',newGrade)
+
+		user.grades = [
+			...user.grades,
+			newGrade]
+
+		console.log('user.grades',user.grades)
+		return await Item.create(user);
+
+	}catch (err) {
+		console.log(err)
+        return res.status(400).json({ error: err });
+
+	}
+};
+exports.checkGrade = checkGrade;
+
+async function asyncHandlerGrade (req, res, next)  {
+	try {
+		const {email, password } = req.body;
+
+		const USER_GREDE = await Item.findOne({email}).exec();
+		const GRADE= await Item.find({grades}.exec());
+		console.log('asyncHandlerLogin items: ' , GRADE);
+		console.log('asyncHandlerLogin items: ' , USER_GREDE);
+		console.log('asyncHandlerLogin items.password: ' , USER_GREDE. password);
+		console.log('asyncHandlerLogin items.email: ' , USER_GREDE.email);
+
+	}catch{
+		console.log(err)
+        return res.status(400).json({ error: err });
+
+	}
+};
+exports.UserGrade = asyncHandlerGrade;
 
 
 

@@ -11,6 +11,7 @@ class OpeningScreen extends Component{
         this.state ={
            show :false
         }
+        console.log('test')
         this.onClick2 = this.onClick2.bind(this)
 	}
     onClick2(){
