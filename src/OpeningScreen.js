@@ -33,7 +33,7 @@ render(){
 		<div className="welcome">
 					<div id="mainWelcome">
 						<h1>ברוכים הבאים</h1>
-						<h2>מבחנים בהסטוריה</h2>
+						<h2>אתר המבחנים</h2>
 
                         <Link to="/LogOrReg">
                         <button className="next" type="button" onClick={this.onClick2 }>

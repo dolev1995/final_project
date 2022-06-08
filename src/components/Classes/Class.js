@@ -27,6 +27,7 @@ function Class (){
       }
    return (
        <div className='Test'>
+           <h1>בחר את המקצוע עליו תרצה להיבחן:</h1>
              <ul className='TestList'></ul>
           <ul>
           {classes && classes.length && classes.map((item, index) => {

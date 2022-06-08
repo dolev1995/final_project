@@ -4,6 +4,7 @@ import OpeningScreen from './OpeningScreen'
 import LogOrReg from './LogOrReg'
 import Register from './Register'
 import Login from './Login'
+import Footer from './Footer'
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/sidbar/Sidebar'
@@ -26,6 +27,7 @@ function App() {
 console.log('App')
   return (
     <div>
+      <div>
       <Router>
 
         <Routes>
@@ -49,7 +51,8 @@ console.log('App')
 
         </Routes>
       </Router >
-      
+      </div>
+      <Footer/>
     </div>
   );
 }

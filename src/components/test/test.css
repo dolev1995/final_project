@@ -3,13 +3,14 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-    background: rgb(221,209,183);
+    /* background: rgb(221,209,183);
     background: radial-gradient(circle, rgba(221,209,183,1) 0%, rgba(221,209,183,1) 100%);
     background-image: url(https://blogs.clemson.edu/cuadvocacyandsuccess/files/2016/08/thinking-emoticon-300x300.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: left; 
-    background-size: 40%;
+    background-size: 40%; */
+   
 }
 
 form {
@@ -161,5 +162,115 @@ float: right;
 height: 18px;
 margin-bottom: 0em;
 
+
+}
+input[type="checkbox"]{
+
+padding: 1em;
+width: 20px;
+float: right;
+height: 18px;
+margin-bottom: 0em;
+
+}
+span.meesage {
+  color: #f00;
+  display: block;
+  /* border-top: 4px solid #a7a59b;
+  background-color: #f6e9d9; */
+  height: 22px;
+  line-height: 18px;
+  padding: 2px 3px;
+  font-size: 40px;
+  color: #000;
+  margin-bottom: 13px;
+  clear:both;
+}
+.pageQuestions{
+  background: radial-gradient(circle, rgba(221,209,183,1) 0%, rgba(221,209,183,1) 100%);
+  background: #6cca9e;
+  /* color:#bf1650; */
+  background-image: url(https://blogs.clemson.edu/cuadvocacyandsuccess/files/2016/08/thinking-emoticon-300x300.png);
+  background-color: #6cca9e;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: left; 
+  /* background-size: 40%; */
+  background-size: 20%;
+}
+.qAa{
+  background: #e5ebe8;
+}
+
+
+
+.countdown {
+  background-color:rgb(113, 119, 134);
+  position: relative;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 100%;
+}
+  a[onclick] {
+    color: rgb(113, 119, 134);
+    font-size: 14px;
+  }
+
+
+
+    .countdown-number {
+    font-size: 14px;
+  } 
+
+
+.countdown-number {
+  color: white;
+  display: inline-block;
+  line-height: 60px;
+}
+
+.countdown svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+.countdown svg circle {
+  stroke-dasharray: 169.5px;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-width: 5px;
+  /* stroke: $btn-color2; */
+  fill: none;
+  animation: countdown linear infinite forwards;
+}
+
+.countdown-no-animation svg circle {
+  stroke-dasharray: 169.5px;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-width: 2px;
+  stroke: white;
+  fill: none;
+  animation: none;
+}
+ @keyframes countdown {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: 169.5px;
+  }
+}
+
+.divOfCountDown{
+  position: absolute;
+  top: 50px;
+  right: 150px;
 
 }

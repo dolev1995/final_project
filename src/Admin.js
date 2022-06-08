@@ -2,18 +2,40 @@ import React, {Component} from 'react'
 import './App.css';
 import Arrow from './images/arrow.png'
 import {getUsers} from './actions'
+import Select from 'react-select'
 
 import {Link} from 'react-router-dom'
+
+    const looped = getUsers().then(res => {
+        res.data.data.map((d, i) => (
+        <div key={i}>
+          <h1>{d.email}</h1> <h1>{d.name.first}</h1>
+        </div>
+      ));
+        });
+
 
 class Admin extends Component{
     constructor() {
 		super();
         this.state ={
            show :false,
-           val: 1
+           val: 1,
+           isClicked: false
         }
         this.onClick2 = this.onClick2.bind(this)
 	}
+
+    handleClick = () => {
+        this.setState(prevState => {
+          console.log(prevState);
+          return { isClicked: !prevState.isClicked };
+        });
+      };
+  
+
+
+
     onClick2(){
         this.setState({
             show :true,
@@ -51,6 +73,50 @@ class Admin extends Component{
     }).catch(err =>  console.log('have a err!!!!',err));
     }
 
+
+    nameOfStudents()
+    {
+        getUsers().then(res => {
+            console.log('res',res) ;   
+        if(res){
+<ul>
+    {   res.data.data.map(function(v){
+            <li>{res.data.data.email} </li>
+    })
+    
+        }
+    </ul>
+    //  for(let i=0;i<res.data.data.length;i++)
+    // {
+    //             console.log(res.data.data[i].name.first)
+    // }
+}
+}).catch(err =>  console.log('have a err!!!!',err));
+}
+
+            // var select = document.createElement('select');
+            // select.innerHTML = res.data.data.map(function(v){
+            //     const listItems = res.data.data.map(function(v){
+            // //     return '<option value="' + v.email + '">' + v.name.first + '</option>';
+            // // }).join('');
+            // <li>{v.email}</li>
+            // });
+            // <ul>{listItems}</ul>  
+    
+
+
+          // for(let i=0;i<res.data.data.length;i++)
+            // {
+            //     //console.log(res.data.data[i].name.first)
+            //     // <option> res.data.data[i].name.first </option>
+            //     var optn = res.data.data[i];
+            //     var el = document.createElement("option");
+            //     el.textContent = optn;
+            //     el.value = optn;
+            //     select.appendChild(el);
+
+            // }
+            //alert(res.data.data[0].email)
     mailStudents(e)
     {
         getUsers().then(res => {
@@ -70,17 +136,16 @@ class Admin extends Component{
 
 
 render(){
-
+ 
     return(
      
 
 
-		<div className="welcome">
-					<div id="mainWelcome">
-						<h1>ברוך הבא</h1>
-						<h2>דף מורה</h2>
+		<div className="admin">
+					<div id="mainWelcomeAdmin">
+						<h2>ברוך הבא דף מורה</h2>
 
-<ul id="buttonAdmin">
+{/* <ul id="buttonAdmin">
 <li> <button className="btnAdmin" type="button" onClick={this.handle}>  מספר התלמידים שנרשמו לאתר </button></li>
 
 <li> <button className="btnAdmin" type="button" onClick={this.mailFirstStudents}>  המייל של התלמיד הראשון </button></li>
@@ -90,8 +155,25 @@ render(){
 
 <li> <button className="btnAdmin" type="button" onClick={()=>{this.mailStudents(this.state.val)}}>  המייל של תלמיד מסויים </button></li>
 
-</ul>
+<li> <button className="btnAdmin" type="button" onClick={this.nameOfStudents}>  שמות התלמידים </button></li> 
 
+
+
+</ul> */}
+{/* <div>
+ <button className="btnAdmin" type="button" onClick={this.nameOfStudents}>  שמות התלמידים </button>
+
+ {this.state.isClicked && looped}
+ </div> */}
+
+<div className='btnAdminRight'> <button className='Admin_btn_1'> התלמידים שלי</button>
+<button className='Admin_btn_1'> הוסף מבחן </button>
+<button className='Admin_btn_1'> הוסף תלמיד </button>
+</div>
+<div className='btnAdminLeft'><button className='Admin_btn_1'> חיפוש תלמיד </button>
+<button className='Admin_btn_1'> חיפוש מבחן </button>
+<button className='Admin_btn_1'>דוחות</button>
+</div>
 
                 
 					</div>

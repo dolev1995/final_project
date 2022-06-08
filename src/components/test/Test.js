@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useParams } from 'react-router-dom';
 import {ShowTestById} from '../../actions'
 import {CheckGrade} from "../../actions/index"
+import CountDown from "./CountDown"
 
 import "./test.css";
 
@@ -43,13 +44,16 @@ export default function Test() {
 
   console.log('testsByClassId',testsByClassId)
   return (
-        <form className="pageQuestions" onSubmit={handleSubmit(onSubmit)}>
+      <div className="pageQuestions">
+        <form  onSubmit={handleSubmit(onSubmit)}>
+    <span class="meesage">תחשוב טוב, יהיה טוב!</span>
+
             {testsByClassId &&  testsByClassId.questions &&  testsByClassId.questions.map((item, i) => {
-                return (<div key={i}>
+                return (<div  key={i}>
                     <span class="testSpan"> {item.questionText} </span>
                     {item && item.ansers && item.ansers.map((anser, j) => {
-                                 return (<div   key={j}>  
-                                              <input  type="radio" value={anser.AnswerText} {...register(`${item.questionText}`)} />  
+                                 return (<div className="qAa" key={j}>  
+                                              <input  type={i===2? "checkbox" : "radio"} value={anser.AnswerText} {...register(`${item.questionText}`)} />  
                                               {anser.AnswerText} 
                                         </div>
                         // return (<option key={j} value={`${anser.AnswerText}`}>{anser.AnswerText}</option>
@@ -57,8 +61,10 @@ export default function Test() {
                 </div>
                 
             )})}
-
+            {<div className="divOfCountDown"> <CountDown count = {60}/>
+            </div>}
         <input type="submit" />
         </form>
+        </div>
     );
 }

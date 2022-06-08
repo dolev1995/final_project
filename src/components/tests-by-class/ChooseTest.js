@@ -32,6 +32,8 @@ import {ShowTestsByClassId} from '../../actions'
 
    return (
        <div className="Test">
+                      <h1>בחר את המקצוע עליו תרצה להיבחן:</h1>
+
              <ul className='TestList'></ul>
           <ul>
           {testsByClassId && testsByClassId.length && testsByClassId.map((item, index) => {

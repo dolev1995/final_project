@@ -96,6 +96,13 @@ export const getUsers = () => {
 	return axios.get(baseApi + 'Getuser',"");
 };
 
+// export const getUsersNames = () => {
+// 	console.log('get users names')
+// 	console.log('baseApi',baseApi)
+// 	const withCredentials = true;
+// 	return axios.get(baseApi + 'GetuserNames',"");
+// };
+
 
 // export const userAdd = (newUser) => {
 // 	return function (dispatch) {
