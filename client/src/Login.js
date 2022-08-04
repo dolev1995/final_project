@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { useNavigate } from "react-router-dom";
-import { withParams } from "./Hoc";
+import { withParams } from "./HOC";
 import {userLogin} from './actions'
+import IconLogin from './IconLogin.ico'
+//import logo from './logo.svg';
 
 import './App.css';
 
@@ -56,9 +58,20 @@ class Login extends Component {
         userLogin(existUser).then(res => {
                 console.log('res',res) ;   
             if(res){
-                this.props.navigate('/Sidebar')
+                if((existUser.email).includes("admin")){
+                    window.userProfile = res && res.data && res.data.data;
+                    this.props.navigate('/Admin')
+                }
+                else{
+                    window.userProfile = res && res.data && res.data.data;
+                    this.props.navigate('/Sidebar' )
+                    }
             }
-        }).catch(err =>  console.log('err',err));
+        }).catch(
+            err =>  console.log('err',err)
+            //alert("שגיאה בהתחברות, וודא שהנתונים נכונים")
+            
+            );
 
 	}
 
@@ -69,6 +82,7 @@ class Login extends Component {
             <div className="login">
                 <h3>כניסה</h3>
 
+<img src={"https://iconarchive.com/download/i91933/icons8/windows-8/User-Interface-Login.ico"} className="imgLogin" alt=" ):תמונה בעייתית"/>
                 <form onSubmit={this.handleSubmit}>
 
                     <input className='inputRegister' placeholder="דואר אלקטרוני" type="email" value={this.state.fieldName} ref="email" onChange={(event) => this.handleChange(event,"email" )} required />

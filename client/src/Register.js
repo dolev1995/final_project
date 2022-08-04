@@ -3,7 +3,8 @@ import './App.css';
 import {userAdd} from './actions'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import { withParams } from "./Hoc";
+import { withParams } from "./HOC";
+import Sidebar from './components/sidbar/Sidebar'
 
 class Register extends Component {
     constructor() {
@@ -40,6 +41,8 @@ class Register extends Component {
 			email: this.state.email
 
         };
+
+   
         console.log('handleRegister newUser', newUser)
         userAdd(newUser).then(() => {
                 console.log('ok') ;        

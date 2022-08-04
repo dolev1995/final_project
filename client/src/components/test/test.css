@@ -1,0 +1,276 @@
+body {
+  /* background: #fff; */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+    /* background: rgb(221,209,183);
+    background: radial-gradient(circle, rgba(221,209,183,1) 0%, rgba(221,209,183,1) 100%);
+    background-image: url(https://blogs.clemson.edu/cuadvocacyandsuccess/files/2016/08/thinking-emoticon-300x300.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left; 
+    background-size: 40%; */
+   
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-weight: 100;
+  color: white;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(79, 98, 148);
+}
+
+.form {
+  background: #0e101c;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+p {
+  color: #bf1650;
+}
+
+p::before {
+  display: inline;
+  content: "⚠ ";
+}
+
+input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+label {
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 13px;
+  margin-top: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+button[type="submit"],
+input[type="submit"] {
+  background: #ec5990;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  background: #bf1650;
+}
+
+button[type="submit"]:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+  transition: 0.3s all;
+  transform: translateY(3px);
+  border: 1px solid transparent;
+  opacity: 0.8;
+}
+
+input:disabled {
+  opacity: 0.4;
+}
+
+input[type="button"]:hover {
+  transition: 0.3s all;
+}
+
+button[type="submit"],
+input[type="button"],
+input[type="submit"] {
+  -webkit-appearance: none;
+}
+
+.App {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+button[type="button"] {
+  display: block;
+  appearance: none;
+  background: #333;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+hr {
+  margin-top: 30px;
+}
+
+button {
+  display: block;
+  appearance: none;
+  margin-top: 40px;
+  border: 1px solid #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+.Test{
+
+  background: green;
+  margin-top: 100px;
+  border: 1px solid black;  
+  margin-left: 300px;
+  display:inline-block;
+
+
+
+}
+.TestList{
+  background: yellow;
+
+}
+
+span.testSpan {
+  color: #f00;
+}
+
+input[type="radio"]{
+
+padding: 1em;
+width: 20px;
+float: right;
+height: 18px;
+margin-bottom: 0em;
+
+
+}
+input[type="checkbox"]{
+
+padding: 1em;
+width: 20px;
+float: right;
+height: 18px;
+margin-bottom: 0em;
+
+}
+span.meesage {
+  color: #f00;
+  display: block;
+  /* border-top: 4px solid #a7a59b;
+  background-color: #f6e9d9; */
+  height: 22px;
+  line-height: 18px;
+  padding: 2px 3px;
+  font-size: 40px;
+  color: #000;
+  margin-bottom: 13px;
+  clear:both;
+}
+.pageQuestions{
+  background: radial-gradient(circle, rgba(221,209,183,1) 0%, rgba(221,209,183,1) 100%);
+  background: #6cca9e;
+  /* color:#bf1650; */
+  background-image: url(https://blogs.clemson.edu/cuadvocacyandsuccess/files/2016/08/thinking-emoticon-300x300.png);
+  background-color: #6cca9e;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: left; 
+  /* background-size: 40%; */
+  background-size: 20%;
+}
+.qAa{
+  background: #e5ebe8;
+}
+
+
+
+.countdown {
+  background-color:rgb(113, 119, 134);
+  position: relative;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 100%;
+}
+  a[onclick] {
+    color: rgb(113, 119, 134);
+    font-size: 14px;
+  }
+
+
+
+    .countdown-number {
+    font-size: 14px;
+  } 
+
+
+.countdown-number {
+  color: white;
+  display: inline-block;
+  line-height: 60px;
+}
+
+.countdown svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+
+.countdown svg circle {
+  stroke-dasharray: 169.5px;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-width: 5px;
+  /* stroke: $btn-color2; */
+  fill: none;
+  animation: countdown linear infinite forwards;
+}
+
+.countdown-no-animation svg circle {
+  stroke-dasharray: 169.5px;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke-width: 2px;
+  stroke: white;
+  fill: none;
+  animation: none;
+}
+ @keyframes countdown {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: 169.5px;
+  }
+}
+
+.divOfCountDown{
+  position: absolute;
+  top: 50px;
+  right: 150px;
+
+}
