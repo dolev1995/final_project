@@ -4,7 +4,9 @@ import { useForm } from "react-hook-form";
 import { useParams } from 'react-router-dom';
 import {ShowTestById} from '../../actions'
 import {CheckGrade} from "../../actions/index"
+import {postGrade} from "../../actions/index"
 import CountDown from "./CountDown"
+
 import "../page/viewGrade"
 import "./test.css";
 
@@ -12,6 +14,9 @@ export default function Test() {
   const { register, handleSubmit } = useForm();
   const queryParams = new URLSearchParams(window.location.search)
   const testId = queryParams.get("testId")
+  const [testsByClassId, setTestsByClassId] = useState(null);
+  const [showGrade, setShowGrade] = useState(false);
+  const [data, setData] = useState(window.userProfile);
 
   const onSubmit = async (rowData) => {
     const data = {}
@@ -27,7 +32,10 @@ export default function Test() {
     console.log('onSubmit data ',data);
     let test = await CheckGrade(data)
     console.log('CheckGrade(data) ',test);
-   
+    setData(test && test.data && test.data.result);
+    setShowGrade(true)
+    // let NewGrade = await postGrade(data)
+    // console.log('postGrade(data) ',NewGrade);
 
     // console.log(rowData);
     // console.log(Object.entries(rowData));
@@ -39,7 +47,6 @@ export default function Test() {
   } 
 
  
-  const [testsByClassId, setTestsByClassId] = useState(null);
 
   const getTestById = async () =>{
       const res = await ShowTestById(testId);
@@ -53,8 +60,22 @@ export default function Test() {
     getTestById();
   },[])
 
-  console.log('testsByClassId',testsByClassId)
-  return (
+  const getGrade = () =>{
+    console.log('data.grades',data.grades)
+    return (
+        <div className="postGrade">
+         <h1>הציון שלך הוא</h1>
+         <h1>{data.grades[data.grades.length-1].grade} </h1>
+
+        </div>
+    )
+ }
+
+ const submit = () => {
+  handleSubmit(onSubmit)();
+}
+
+  const getTest = () => (
       <div className="pageQuestions">
         <form  onSubmit={handleSubmit(onSubmit)}>
           <span className="meesage">תחשוב טוב, יהיה טוב!</span>
@@ -64,7 +85,7 @@ export default function Test() {
                     <span className="testSpan"> {item.questionText} </span>
                     {item && item.ansers && item.ansers.map((anser, j) => {
                       return (<div className="qAa" key={j}>  
-                                  <input  type={i===2 ? "checkbox" : "radio"} value={'lol' ||anser.AnswerText} {...register(`${item.questionText}`)} />  
+                                  <input  type={i===2 ? "checkbox" : "radio"} value={anser.AnswerText} {...register(`${item.questionText}`)} />  
                                   {anser.AnswerText} 
                             </div>
                         // return (<option key={j} value={`${anser.AnswerText}`}>{anser.AnswerText}</option>
@@ -72,10 +93,15 @@ export default function Test() {
                 </div>
                 
             )})}
-            {/* {<div className="divOfCountDown"> <CountDown count = {60}/>
-            </div>} */}
+            {<div className="divOfCountDown"> <CountDown count = {60} submit={submit}
+            />
+            </div>}
         <input type="submit" />
         </form>
-        </div>
+      </div>
     );
+
+
+  console.log('testsByClassId',testsByClassId)
+  return showGrade ? getGrade() : getTest();
 }

@@ -45,6 +45,14 @@ const router = (app, express) => {
 		return defaultController.checkGrade(req,res)//.then(() => res.status(200).send({}));
 
 	});
+	app.post('/user/check/test/grade', (req, res) => {
+		console.log('/user/check/test/grade')
+
+		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
+
+		return defaultController.postGrade(req,res) //.then(() => res.status(200).send({}));
+
+	});
 
 	app.post('/user/login/test', (req, res) => {
 		console.log('/user/login/test')

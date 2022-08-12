@@ -12,6 +12,7 @@ import Sidebar from './components/sidbar/Sidebar'
 // import Home from '@mui/icons-material/Home';
 import Home from './components/page/Home';
 import Profile from './components/page/Profile';
+import PostGrade from './components/page/postGrade';
 import Test from './components/tests-by-class/ChooseTest';
 import WarsixDay from './components/test/Test';
 import Class from './components/Classes/Class'
@@ -44,6 +45,8 @@ console.log('App')
           <Route exact path="/class" element={<Class />} />
           <Route exact path="/Grade" element={<Grade />} />
           <Route exact path="/Admin" element={<Admin />} />
+          <Route exact path="/PostGrade" element={<PostGrade />} />
+
 
 
           <Route exact path="/warsixDay" element={<WarsixDay />} />

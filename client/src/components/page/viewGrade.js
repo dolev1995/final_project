@@ -53,6 +53,7 @@ function Grade() {
                 <TableCell align="right">testName </TableCell>
                 <TableCell align="right">testClassName</TableCell>
                 <TableCell align="right">testClassId </TableCell>
+                <TableCell align="right">dateTest </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -65,6 +66,8 @@ function Grade() {
                   <TableCell align="right">{row.testName}</TableCell>
                   <TableCell align="right">{row.testClassName}</TableCell>
                   <TableCell align="right">{row.testClassId}</TableCell>
+                  <TableCell align="right">{row.dateTest}</TableCell>
+
                 </TableRow>
               ))}
             </TableBody>

@@ -39,6 +39,12 @@ export const CheckGrade = data => {
 	const withCredentials = true;
 	return axios.post(baseApi + 'user/check/test',data );
 };
+export const postGrade = data => {
+	console.log('ShowTest')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	return axios.post(baseApi + 'user/check/test/grade',data );
+};
 
 
 export const ShowAllClasses = testId => {

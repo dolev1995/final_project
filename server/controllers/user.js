@@ -1,8 +1,9 @@
 'use strict';
 const { getMaxListeners } = require('process');
 const Item = require('../models/user')
-const Test = require('../models/TestM')
+const {user} = require('../models/user')
 
+const Test = require('../models/TestM');
 const mongoose = require('mongoose'),
 	crypto = require('crypto'),
 	defaultAdd = require('./index').default_add,
@@ -10,6 +11,7 @@ const mongoose = require('mongoose'),
 {KJUR} = require('jsrsasign');
 const ObjectId = require('mongoose').Types.ObjectId;
 
+console.log('userModel',Item)
 
 
 // function addUser(User, data = {}) {
@@ -90,23 +92,61 @@ async function asyncHandlerLogin (req, res, next)  {
 
 exports.loginUser = asyncHandlerLogin;
 
+async function postGrade (req, res, next)  {
+	try {
+		const {email, password } = req.body;
+
+		console.log('postGrade',req.body)
+		
+		console.log('postGrade email: ' , email);
+		
+		const user =  await Item.findOne({email}).exec();
+		console.log('postGrade user: ' , user);
+
+		return res.status(200).json({result: user}); 
+
+	}catch (err) {
+		console.log(err)
+        return res.status(400).json({ error: err });
+
+	}
+};
+exports.postGrade = postGrade;
 
 async function checkGrade (req, res, next)  {
 	try {
 		const {email, testId , testAnser} = req.body;
 		console.log('checkGrade',req.body)
-		const user = await Item.findOne({email}).exec();
+		const checkGradeUser = await Item.findOne({email}).exec();
 		const test = await Test.findOne({testId}).exec();
-		console.log('checkGrade user: ' , user);
-		console.log('checkGrade test: ' , test);
+		console.log('checkGrade user: ' , checkGradeUser);
+		console.log('checkGrade test: ' , JSON.stringify(test));
+		console.log('testAnser' , testAnser);
+
 		let counterRightansers = 0;
 
 		Object.entries(testAnser).map(([key, value]) => {
+			console.log('[key, value]',[key, value])
+			if(!value || (Array.isArray(value) && !value.filter(item => item).length)) return;
 			const currQuestion = test.questions.find(question => question.questionText === key);
+			console.log('currQuestion',currQuestion)
+
 			if(currQuestion) {
-				const currAnser = currQuestion.ansers.find(anser => anser.AnswerText === value)
-				if(currAnser && currAnser.isTrue){
+				const currAnser = currQuestion.ansers.filter(anser => {
+					if(!Array.isArray(value)) return anser.AnswerText === value
+					const result = value.find(currValue => {
+						console.log('currValue',currValue)
+						console.log('anser.AnswerText',anser.AnswerText)
+						return currValue === anser.AnswerText
+					})
+					console.log('result',result);
+					return result
+				})
+				
+				console.log('currAnser1',currAnser)
+				if(currAnser.every(item => item && item.isTrue)){
 					counterRightansers++;
+					console.log('counterRightansers',counterRightansers)
 				}
 			}
 
@@ -117,17 +157,22 @@ async function checkGrade (req, res, next)  {
 			grade: (counterRightansers / Object.entries(testAnser).length) * 100,
 			testName:test.testName,
 			ClasseName:test.ClasseName,
-			classId: test.classId
+			classId: test.classId,
+			dateTest: new Date().toLocaleString()
+			
 		}
 		console.log('newGrade',newGrade)
-		console.log('user',user)
+		console.log('checkGradeUser',checkGradeUser)
 
-		user.grades = [
-			...user.grades,
+		checkGradeUser.grades = [
+			...checkGradeUser.grades,
 			newGrade]
 
-		console.log('user.grades',user.grades)
-		return await Item.create(user);
+		// console.log('user.grades',user.grades)
+		console.log('userModel',Item)
+
+		const result = await checkGradeUser.save();
+	    return res.status(200).json({result}); 
 
 	}catch (err) {
 		console.log(err)
