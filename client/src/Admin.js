@@ -6,7 +6,8 @@ import Select from 'react-select'
 import {createTest} from './actions'
 
 import {Link} from 'react-router-dom'
-
+//const { uuid } = require('uuidv4');
+var count = 232321;
     const looped = getUsers().then(res => {
         res.data.data.map((d, i) => (
         <div key={i}>
@@ -94,29 +95,28 @@ class Admin extends Component{
 // }
 // }).catch(err =>  console.log('have a err!!!!',err));
 // }
+
     nameOfStudents()
     {
         getUsers().then(res => {
             console.log('res',res) ;   
         if(res){
-
-       {
+       
         var myWindow = window.open("", "MsgWindow", "width=1000,height=200");
-        //myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
         
         res.data.data.map(function(v){
+          
         myWindow.document.write(v.email+'*');
+       
         <br/>
-        })
-
-     
         }
-  
+
  
-        }
-}).catch(err =>  console.log('have a err!!!!',err));
-}
+   
+).catch(err =>  console.log('have a err!!!!',err));
+    }})}
 
+   
             // var select = document.createElement('select');
             // select.innerHTML = res.data.data.map(function(v){
             //     const listItems = res.data.data.map(function(v){
@@ -160,12 +160,39 @@ class Admin extends Component{
 
     createTest()
     {
-        var question = window.prompt("Enter your question");
-        //alert(question);
-        createTest(question).then(() => {
+        count++;
+        // var question = window.prompt("Enter your question");
+        // alert(typeof question)
+        var testId = window.prompt("Enter your testId");
+        var testName = window.prompt("Enter your testName");
+        var classId = window.prompt("Enter your classId");
+        var ClasseName = window.prompt("Enter your ClasseName");
+        var questionId = window.prompt("Enter your questionId");
+        var questionText = window.prompt("Enter your questionText");
+        var AnswerId = window.prompt("Enter your AnswerId");
+        var AnswereTxt = window.prompt("Enter your AnswereTxt");
+
+        const data = {
+            _id:(count.toString()),
+            testId:Number(testId),
+            testName:testName,
+            classId:Number(classId),
+            ClasseName:ClasseName,
+            questions: [{
+                questionId:Number(questionId),
+                questionText:questionText,
+                ansers: [{
+                    AnswerId:Number(AnswerId),
+                    AnswereTxt:AnswereTxt
+                }]
+
+     } ]
+    
+        }
+
+          createTest({data}).then(() => {
             console.log('ok') ;        
-       // this.props.navigate('/Sidebar')
-    }).catch(err =>  console.log('err',err));
+        }).catch(err =>  console.log('erorr',err));
 
     }
 

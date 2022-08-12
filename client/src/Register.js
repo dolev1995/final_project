@@ -3,7 +3,7 @@ import './App.css';
 import {userAdd} from './actions'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import { withParams } from "./HOC";
+import { withParams } from "./hoc";
 import Sidebar from './components/sidbar/Sidebar'
 
 class Register extends Component {

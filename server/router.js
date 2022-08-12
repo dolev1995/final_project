@@ -118,13 +118,15 @@ const router = (app, express) => {
 
 
 	app.post('/CreateTest', (req, res) => {
-		
+		try{
 		console.log("/CreateTest");
-		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
-
-		testController.CreateTest(req,res).then(() => res.status(200).send({}));
 		
-
+		
+		return testController.CreateTest(req,res);
+		}
+		catch(e){
+			console.log(e);
+		}
 	});
 
 	app.get('/GradeCalculation', (req, res) => {
