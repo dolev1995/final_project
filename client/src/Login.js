@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { useNavigate } from "react-router-dom";
 import { withParams } from "./Hoc";
-import {userLogin} from './actions'
+import {userLogin} from './actions/index'
 import IconLogin from './IconLogin.ico'
 //import logo from './logo.svg';
 

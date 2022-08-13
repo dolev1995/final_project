@@ -39,7 +39,7 @@ export const CheckGrade = data => {
 	const withCredentials = true;
 	return axios.post(baseApi + 'user/check/test',data );
 };
-export const postGrade = data => {
+export const findUser = data => {
 	console.log('ShowTest')
 	console.log('baseApi',baseApi)
 	const withCredentials = true;
@@ -84,6 +84,15 @@ export const ShowGrade = grades => {
 		grades
 	}
 	return axios.get(baseApi + 'ShowGrade',{ params} );
+};
+export const ShowProfile = name => {
+	console.log('ShowGrade')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	const params = {
+		name
+	}
+	return axios.get(baseApi + 'ShowProfile',{ params} );
 };
 
 export const GradeCalculation = AnswerId => {

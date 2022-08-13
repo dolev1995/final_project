@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import {ShowAllClasses} from '../../actions'
+import {ShowAllClasses} from '../../actions/index'
 // import '../.././sidebar/./Sidebar.css';
 import './Class.css';
 //import './Sidebar.css';

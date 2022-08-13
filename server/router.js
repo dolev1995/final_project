@@ -50,7 +50,7 @@ const router = (app, express) => {
 
 		// res.header("Access-Control-Allow-Origin", "http://localhost:3000,localhost:3000,http://localhost:3001,localhost:3001");
 
-		return defaultController.postGrade(req,res) //.then(() => res.status(200).send({}));
+		return defaultController.findUser(req,res) //.then(() => res.status(200).send({}));
 
 	});
 

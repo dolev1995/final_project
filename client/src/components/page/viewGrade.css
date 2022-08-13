@@ -6,3 +6,16 @@
     background: rgb(185, 72, 72); 
     padding: auto; 
 }
+.Profile{
+    background: rgb(109, 110, 110); 
+    padding: auto; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    background-position: 100% 100%;
+    background-size: 100%; 
+}

@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import './App.css';
 import Arrow from './images/arrow.png'
-import {getUsers} from './actions'
+import {getUsers} from './actions/index'
 import Select from 'react-select'
-import {createTest} from './actions'
+import {createTest} from './actions/index'
 
 import {Link} from 'react-router-dom'
 

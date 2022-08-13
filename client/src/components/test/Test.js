@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { useParams } from 'react-router-dom';
 import {ShowTestById} from '../../actions'
 import {CheckGrade} from "../../actions/index"
-import {postGrade} from "../../actions/index"
 import CountDown from "./CountDown"
 
 import "../page/viewGrade"
@@ -34,8 +33,7 @@ export default function Test() {
     console.log('CheckGrade(data) ',test);
     setData(test && test.data && test.data.result);
     setShowGrade(true)
-    // let NewGrade = await postGrade(data)
-    // console.log('postGrade(data) ',NewGrade);
+
 
     // console.log(rowData);
     // console.log(Object.entries(rowData));

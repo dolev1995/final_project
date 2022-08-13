@@ -92,16 +92,16 @@ async function asyncHandlerLogin (req, res, next)  {
 
 exports.loginUser = asyncHandlerLogin;
 
-async function postGrade (req, res, next)  {
+async function findUser (req, res, next)  {
 	try {
 		const {email, password } = req.body;
 
-		console.log('postGrade',req.body)
+		console.log('findUser body',req.body)
 		
-		console.log('postGrade email: ' , email);
+		console.log('findUser email: ' , email);
 		
 		const user =  await Item.findOne({email}).exec();
-		console.log('postGrade user: ' , user);
+		console.log('findUser user: ' , user);
 
 		return res.status(200).json({result: user}); 
 
@@ -111,7 +111,7 @@ async function postGrade (req, res, next)  {
 
 	}
 };
-exports.postGrade = postGrade;
+exports.findUser = findUser;
 
 async function checkGrade (req, res, next)  {
 	try {

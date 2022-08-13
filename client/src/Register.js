@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import './App.css';
-import {userAdd} from './actions'
+import {userAdd} from './actions/index'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import { withParams } from "./Hoc";
