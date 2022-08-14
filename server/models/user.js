@@ -80,4 +80,5 @@ UserSchema.statics.userStudySchedule = function ({ filter = {}, search,limit = 5
 const userModel = mongoose.model('user', UserSchema);
 
 userModel.validPassword = (password, thisPass) => bcrypt.compareSync(password, thisPass);
+
 module.exports = userModel;

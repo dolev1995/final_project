@@ -88,16 +88,18 @@ async function GradeCalculation (req, res, next)  {
 
 async function CreateTest (req, res, next)  {
     try {
+        console.log("here update")
         const body = req.body;
         const question = body.question
          console.log(question);
          const item = await Item.create(question);
     }catch (err) {
+		console.log("the error is: "+err)
 		console.log(err)
         return res.status(400).json({ error: err });
         }
 }
-
+ 
 
 
 

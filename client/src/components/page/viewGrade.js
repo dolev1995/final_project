@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 function Grade() {
   const originalRows = window && window.userProfile && window.userProfile.grades || [];
   console.log('originalRows1',originalRows)
- 
+
   const [rows, setRows] = useState(originalRows);
   const [searched, setSearched] = useState("");
   const classes = useStyles();

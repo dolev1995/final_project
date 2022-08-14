@@ -60,7 +60,7 @@ export default function Test() {
 
   const getGrade = () =>{
     console.log('data.grades',data.grades)
-    return (
+  return (
         <div className="postGrade">
          <h1>הציון שלך הוא</h1>
          <h1>{data.grades[data.grades.length-1].grade} </h1>
@@ -82,10 +82,10 @@ export default function Test() {
                 return (<div  key={i}>
                     <span className="testSpan"> {item.questionText} </span>
                     {item && item.ansers && item.ansers.map((anser, j) => {
-                      return (<div className="qAa" key={j}>  
+                                 return (<div className="qAa" key={j}>  
                                   <input  type={i===2 ? "checkbox" : "radio"} value={anser.AnswerText} {...register(`${item.questionText}`)} />  
-                                  {anser.AnswerText} 
-                            </div>
+                                              {anser.AnswerText} 
+                                        </div>
                         // return (<option key={j} value={`${anser.AnswerText}`}>{anser.AnswerText}</option>
                     )})}
                 </div>
@@ -96,7 +96,7 @@ export default function Test() {
             </div>}
         <input type="submit" />
         </form>
-      </div>
+        </div>
     );
 
 
