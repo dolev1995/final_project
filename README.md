@@ -1,3 +1,10 @@
 # final_project
+פרוייקט גמר:
+הרעיון: לבנות אתר מבחנים שיאפשר למורה לבנות מבחנים(שישמרו לו בdb),לצפות ברשימת התלמידים שלו וכו'.
 
-[ReadMe.docx](https://github.com/dolev1995/final_project/files/9332731/ReadMe.docx)
+צד לקוח: js & React       
+
+צד שרת: Node.js              
+
+מסד נתונים(DB) : mongodb atlas                 
+
