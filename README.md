@@ -6,7 +6,8 @@
 
 
 
-צד שרת: Node.js              
+צד שרת:Node.js ![image](https://user-images.githubusercontent.com/57942180/184523708-250cf16f-58fa-41fc-ad3c-31ca5e4081d8.png)
+               
 
 מסד נתונים(DB) : mongodb atlas                 
 
