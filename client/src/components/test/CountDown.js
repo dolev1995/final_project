@@ -13,6 +13,16 @@ export default class Countdown extends Component {
 			showTime: true,
 			clockFlicker: false
 		};
+
+		this.submit = props.submit;
+		this.submit.bind(this);
+
+		// this.handleSubmit= props.handleSubmit;
+	    // this.handleSubmit.bind(this);
+		// this.onSubmit = props.onSubmit;
+		// this.onSubmit.bind(this);
+
+		
 		this.hideCountDown.bind(this);
 		this.interval = this.startCountdown()
 	}
@@ -52,7 +62,8 @@ export default class Countdown extends Component {
 			if (this.state.time < 0) {
 				clearInterval(this.interval);
 				//this.props.timeIsDone()
-                alert("time is done")
+				this.submit()
+                //alert("time is done")
             }
 			if((minutes === "00") && (seconds <= 30))
 			{

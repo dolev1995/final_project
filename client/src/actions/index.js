@@ -11,11 +11,11 @@ export const userAdd = (newUser) => {
 	const withCredentials = true;
 	return axios.post(baseApi + 'user/add/test', newUser);
 };
-export const createTest = (data) => {
+export const createTest = (question) => {
 	console.log('create test')
 	console.log('baseApi',baseApi)
 	const withCredentials = true;
-	return axios.post(baseApi + 'CreateTest', data);
+	return axios.post(baseApi + 'CreateTest', question);
 };
 export const userLogin = (newUser) => {
 	console.log('login user')
@@ -38,6 +38,12 @@ export const CheckGrade = data => {
 	console.log('baseApi',baseApi)
 	const withCredentials = true;
 	return axios.post(baseApi + 'user/check/test',data );
+};
+export const findUser = data => {
+	console.log('ShowTest')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	return axios.post(baseApi + 'user/check/test/grade',data );
 };
 
 
@@ -78,6 +84,15 @@ export const ShowGrade = grades => {
 		grades
 	}
 	return axios.get(baseApi + 'ShowGrade',{ params} );
+};
+export const ShowProfile = name => {
+	console.log('ShowGrade')
+	console.log('baseApi',baseApi)
+	const withCredentials = true;
+	const params = {
+		name
+	}
+	return axios.get(baseApi + 'ShowProfile',{ params} );
 };
 
 export const GradeCalculation = AnswerId => {

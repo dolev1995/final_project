@@ -1,4 +1,5 @@
 //import logo from './logo.svg';
+
 import './App.css';
 import OpeningScreen from './OpeningScreen'
 import LogOrReg from './LogOrReg'
@@ -43,6 +44,7 @@ console.log('App')
           <Route exact path="/class" element={<Class />} />
           <Route exact path="/Grade" element={<Grade />} />
           <Route exact path="/Admin" element={<Admin />} />
+
 
 
           <Route exact path="/warsixDay" element={<WarsixDay />} />

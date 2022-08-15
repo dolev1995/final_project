@@ -6,20 +6,35 @@ import {ShowTestById} from '../../actions'
 import {CheckGrade} from "../../actions/index"
 import CountDown from "./CountDown"
 
+import "../page/viewGrade"
 import "./test.css";
 
 export default function Test() {
   const { register, handleSubmit } = useForm();
   const queryParams = new URLSearchParams(window.location.search)
   const testId = queryParams.get("testId")
+  const [testsByClassId, setTestsByClassId] = useState(null);
+  const [showGrade, setShowGrade] = useState(false);
+  const [data, setData] = useState(window.userProfile);
 
-  const onSubmit = (rowData) => {
+  const onSubmit = async (rowData) => {
     const data = {}
+    console.log('onSubmit testId ',testId);
+    console.log('onSubmit window.userProfile && window.userProfile.email ',window.userProfile && window.userProfile.email);
+    console.log('onSubmit rowData ',rowData);
+    console.log('window.userProfile.grades',window.userProfile && window.userProfile.grades);
+
+
     data.testId = testId;
     data.testAnser = rowData
     data.email =  window.userProfile && window.userProfile.email
-    console.log(data);
-    CheckGrade(data)
+    console.log('onSubmit data ',data);
+    let test = await CheckGrade(data)
+    console.log('CheckGrade(data) ',test);
+    setData(test && test.data && test.data.result);
+    setShowGrade(true)
+
+
     // console.log(rowData);
     // console.log(Object.entries(rowData));
     // console.log(Object.entries(rowData));
@@ -30,11 +45,12 @@ export default function Test() {
   } 
 
  
-  const [testsByClassId, setTestsByClassId] = useState(null);
 
   const getTestById = async () =>{
       const res = await ShowTestById(testId);
-      setTestsByClassId(res && res.data && res.data.data)
+      const data = res && res.data && res.data.data;
+      console.log('data: ', data);
+      setTestsByClassId(data);
   }
 
 
@@ -42,18 +58,32 @@ export default function Test() {
     getTestById();
   },[])
 
-  console.log('testsByClassId',testsByClassId)
+  const getGrade = () =>{
+    console.log('data.grades',data.grades)
   return (
+        <div className="postGrade">
+         <h1>הציון שלך הוא</h1>
+         <h1>{data.grades[data.grades.length-1].grade} </h1>
+
+        </div>
+    )
+ }
+
+ const submit = () => {
+  handleSubmit(onSubmit)();
+}
+
+  const getTest = () => (
       <div className="pageQuestions">
         <form  onSubmit={handleSubmit(onSubmit)}>
-    <span class="meesage">תחשוב טוב, יהיה טוב!</span>
-
+          <span className="meesage">תחשוב טוב, יהיה טוב!</span>
             {testsByClassId &&  testsByClassId.questions &&  testsByClassId.questions.map((item, i) => {
+              console.log('item, i', item, i)
                 return (<div  key={i}>
-                    <span class="testSpan"> {item.questionText} </span>
+                    <span className="testSpan"> {item.questionText} </span>
                     {item && item.ansers && item.ansers.map((anser, j) => {
                                  return (<div className="qAa" key={j}>  
-                                              <input  type={i===2? "checkbox" : "radio"} value={anser.AnswerText} {...register(`${item.questionText}`)} />  
+                                  <input  type={i===2 ? "checkbox" : "radio"} value={anser.AnswerText} {...register(`${item.questionText}`)} />  
                                               {anser.AnswerText} 
                                         </div>
                         // return (<option key={j} value={`${anser.AnswerText}`}>{anser.AnswerText}</option>
@@ -61,10 +91,15 @@ export default function Test() {
                 </div>
                 
             )})}
-            {<div className="divOfCountDown"> <CountDown count = {60}/>
+            {<div className="divOfCountDown"> <CountDown count = {60} submit={submit}
+            />
             </div>}
         <input type="submit" />
         </form>
         </div>
     );
+
+
+  console.log('testsByClassId',testsByClassId)
+  return showGrade ? getGrade() : getTest();
 }

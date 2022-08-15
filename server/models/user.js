@@ -9,7 +9,8 @@ const mongoose = require('mongoose'),
 		testName: String,
 		classId:Number,
 		ClasseName:String,
-		grade:Number
+		grade:Number,
+		dateTest: String
 	})
 
 const UserSchema = new Schema({

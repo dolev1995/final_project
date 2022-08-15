@@ -4,7 +4,7 @@ Schema = mongoose.Schema;
 
 const ansersSchema = new Schema({		
 	AnswerId:Number,
-	AnswereTxt:String
+	AnswerText:String
 })
 
 

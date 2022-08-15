@@ -90,15 +90,12 @@ async function CreateTest (req, res, next)  {
     try {
         console.log("here update")
         const body = req.body;
-        //console.log("testIdnew = " + body.data.testId);
-
-
-        //const question = req.testId
-        //console.log("question = " + question);
-         const item = await Item.create(body.data);
-         return res.status(200).json({data: item})
+        const question = body.question
+         console.log(question);
+         const item = await Item.create(question);
     }catch (err) {
 		console.log("the error is: "+err)
+		console.log(err)
         return res.status(400).json({ error: err });
         }
 }

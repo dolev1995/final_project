@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import './App.css';
 import Arrow from './images/arrow.png'
-import {getUsers} from './actions'
+import {getUsers} from './actions/index'
 import Select from 'react-select'
-import {createTest} from './actions'
+import {createTest} from './actions/index'
 
 import {Link} from 'react-router-dom'
 //const { uuid } = require('uuidv4');
@@ -117,7 +117,9 @@ class Admin extends Component{
             console.log('res',res) ;   
         if(res){
        
+       {
         var myWindow = window.open("", "MsgWindow", "width=1000,height=200");
+        //myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
         
         res.data.data.map(function(v){
           

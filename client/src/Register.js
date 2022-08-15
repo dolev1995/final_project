@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import './App.css';
-import {userAdd} from './actions'
+import {userAdd} from './actions/index'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import { withParams } from "./hoc";
+import { withParams } from "./Hoc";
 import Sidebar from './components/sidbar/Sidebar'
 
 class Register extends Component {
