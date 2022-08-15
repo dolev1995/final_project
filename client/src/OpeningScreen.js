@@ -20,6 +20,13 @@ class OpeningScreen extends Component{
         });
     }
 
+    meaning()
+    {
+        var myWindow = window.open("", "MsgWindow", "width=1000,height=200");
+        myWindow.document.write('אתר אחד המגניבים תנו לנו 100 ותשחררו אותנו');
+        // alert("afug")
+}
+
 
 render(){
 
@@ -40,7 +47,8 @@ render(){
                             <span>התחל</span>
                             <img src={Arrow} className="img1" alt=" ):תמונה בעייתית"/> </button> </Link>
 
-                            {/* {this.state.show ? <Link to="/LogOrReg">Login\Register</Link> : null} */}
+
+                        <button className='The meaning of the site' type="button" onClick={this.meaning }> משמעות האתר</button>
 					</div>
 
                     </div>

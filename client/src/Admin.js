@@ -15,18 +15,33 @@ var count = 232321;
         </div>
       ));
         });
-
+     
 
 class Admin extends Component{
     constructor() {
 		super();
         this.state ={
+           value: '', 
            show :false,
            val: 1,
            isClicked: false
         }
         this.onClick2 = this.onClick2.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 	}
+    handleChange(event, fieldName) {
+        this.setState({[fieldName]: event.target.value});
+      }
+      handleSubmit(event) {
+        event.preventDefault();
+        console.log("submit");
+       this.createTest(event);
+
+      }
+      handleChange(event, fieldName) {
+        this.setState({[fieldName]: event.target.value});
+      }
 
     handleClick = () => {
         this.setState(prevState => {
@@ -106,7 +121,7 @@ class Admin extends Component{
         
         res.data.data.map(function(v){
           
-        myWindow.document.write(v.email+'*');
+        myWindow.document.write("שם התלמיד: "+v.name.first+" , "+"מייל התלמיד: "+v.email+'*');
        
         <br/>
         }
@@ -158,38 +173,59 @@ class Admin extends Component{
     }
 
 
-    createTest()
+    createTest(e)
     {
         count++;
         // var question = window.prompt("Enter your question");
         // alert(typeof question)
-        var testId = window.prompt("Enter your testId");
-        var testName = window.prompt("Enter your testName");
-        var classId = window.prompt("Enter your classId");
-        var ClasseName = window.prompt("Enter your ClasseName");
-        var questionId = window.prompt("Enter your questionId");
-        var questionText = window.prompt("Enter your questionText");
-        var AnswerId = window.prompt("Enter your AnswerId");
-        var AnswereTxt = window.prompt("Enter your AnswereTxt");
 
-        const data = {
-            _id:(count.toString()),
-            testId:Number(testId),
-            testName:testName,
-            classId:Number(classId),
-            ClasseName:ClasseName,
+
+
+    //     var testId = window.prompt("Enter your testId");
+    //     var testName = window.prompt("Enter your testName");
+    //     var classId = window.prompt("Enter your classId");
+    //     var ClasseName = window.prompt("Enter your ClasseName");
+    //     var questionId = window.prompt("Enter your questionId");
+    //     var questionText = window.prompt("Enter your questionText");
+    //     var AnswerId = window.prompt("Enter your AnswerId");
+    //     var AnswereTxt = window.prompt("Enter your AnswereTxt");
+
+    //     const data = {
+    //         _id:(count.toString()),
+    //         testId:Number(testId),
+    //         testName:testName,
+    //         classId:Number(classId),
+    //         ClasseName:ClasseName,
+    //         questions: [{
+    //             questionId:Number(questionId),
+    //             questionText:questionText,
+    //             ansers: [{
+    //                 AnswerId:Number(AnswerId),
+    //                 AnswereTxt:AnswereTxt
+    //             }]
+
+    //  } ]
+    
+    //     }
+
+
+    const data = {
+        _id:(count.toString())+92,
+        testId:7,
+            testName:this.state.testName,
+            classId:12,
+            ClasseName:"ClasseName",
             questions: [{
-                questionId:Number(questionId),
-                questionText:questionText,
+                questionId:13,
+                questionText:this.state.questionText,
                 ansers: [{
-                    AnswerId:Number(AnswerId),
-                    AnswereTxt:AnswereTxt
+                    AnswerId:18,
+                    AnswereTxt:this.state.AnswereTxt
                 }]
 
      } ]
-    
-        }
-
+    }
+    console.log("testName = "+ this.state.testName)
           createTest({data}).then(() => {
             console.log('ok') ;        
         }).catch(err =>  console.log('erorr',err));
@@ -212,6 +248,9 @@ class Admin extends Component{
         }
     }).catch(err =>  console.log('have a err!!!!',err));
     }
+
+
+ 
 
 render(){
  
@@ -247,7 +286,7 @@ render(){
 <div className='btnAdminRight'>
 {/* <button className='Admin_btn_1'> התלמידים שלי</button> */}
 <button className='Admin_btn_1' onClick={this.nameOfStudents}> מיילים תלמידים</button>
-<button className='Admin_btn_1' onClick={this.createTest}> צור מבחן</button>
+{/* <button className='Admin_btn_1' onClick={this.createTest}> צור מבחן</button> */}
 
 {/* <button className='Admin_btn_1'> הוסף מבחן </button> */}
 {/* <button className='Admin_btn_1'> הוסף תלמיד </button> */}
@@ -260,8 +299,16 @@ render(){
 {/* <button className="btnAdmin" type="button" onClick={this.mailFirstStudents}>  המייל של התלמיד הראשון </button> */}
 
 </div>
+ <h5 className="h5">יצירת מבחן</h5>
 
-                
+<form className='formAdmin' onSubmit={this.handleSubmit}>
+<input placeholder="Enter your testName" type="text" value={this.state.fieldName} ref="testName" className='inputRegister' onChange={(event) => this.handleChange(event,"testName" )} required/>
+					<input placeholder="Enter your questionText" type="text" value={this.state.fieldName} ref="questionText" className='inputRegister' onChange={(event) => this.handleChange(event,"questionText" )} required/>
+                    <input placeholder="Enter your AnswereTxt" type="text" value={this.state.fieldName} ref="AnswereTxt" className='inputRegister'  onChange={(event) => this.handleChange(event,"AnswereTxt" )} required/>
+					{/* <input placeholder="סיסמה*" type="password"  value={this.state.fieldName} ref="password" className='inputRegister'  onChange={(event) => this.handleChange(event,"password" )} required/> */}
+					<input type='submit' className="btn main-btn" value='צור מבחן'/>
+</form>
+
 					</div>
 
                     </div>
