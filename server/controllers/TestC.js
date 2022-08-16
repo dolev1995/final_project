@@ -86,16 +86,39 @@ async function GradeCalculation (req, res, next)  {
 
 
 
+// async function CreateTest (req, res, next)  {
+//     try {
+//         console.log("here update")
+//         const body = req.body;
+//         const question = body.question
+//          console.log(question);
+//          const item = await Item.create(question);
+//     }catch (err) {
+// 		console.log("the error is: "+err)
+// 		console.log(err)
+//         return res.status(400).json({ error: err });
+//         }
+// }
 async function CreateTest (req, res, next)  {
     try {
         console.log("here update")
         const body = req.body;
-        const question = body.question
-         console.log(question);
+        console.log('body', body);
+
+        const question = body.data
+         console.log('question', question);
+         console.log('questions', question.questions);
+
          const item = await Item.create(question);
+        //console.log("testIdnew = " + body.data.testId);
+
+
+        //const question = req.testId
+        //console.log("question = " + question);
+         return res.status(200).json({data: item})
     }catch (err) {
-		console.log("the error is: "+err)
 		console.log(err)
+		console.log("the error is: "+err)
         return res.status(400).json({ error: err });
         }
 }

@@ -4,12 +4,12 @@ Schema = mongoose.Schema;
 
 const ansersSchema = new Schema({		
 	AnswerId:Number,
-	AnswerText:String
+	AnswerText:String,
+	isTrue:Boolean
 })
 
 
 const TestSchema = new Schema({
-	_id: String,
 	testId: Number,
 	testName: String,
 	classId:Number,

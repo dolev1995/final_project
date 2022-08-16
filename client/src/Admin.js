@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import './App.css';
 import Arrow from './images/arrow.png'
-import {getUsers} from './actions/index'
+import {getUsers} from './actions'
 import Select from 'react-select'
-import {createTest} from './actions/index'
+import {createTest} from './actions'
 
 import {Link} from 'react-router-dom'
 //const { uuid } = require('uuidv4');
@@ -102,25 +102,20 @@ class Admin extends Component{
             console.log('res',res) ;   
         if(res){
        
-       {
         var myWindow = window.open("", "MsgWindow", "width=1000,height=200");
-        //myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
         
         res.data.data.map(function(v){
           
         myWindow.document.write(v.email+'*');
        
         <br/>
+        }
 
  
-        }
    
 ).catch(err =>  console.log('have a err!!!!',err));
     }})}
 
-        }
-}).catch(err =>  console.log('have a err!!!!',err));
-}
    
             // var select = document.createElement('select');
             // select.innerHTML = res.data.data.map(function(v){
@@ -165,7 +160,39 @@ class Admin extends Component{
 
     createTest()
     {
+        count++;
+        // var question = window.prompt("Enter your question");
+        // alert(typeof question)
+        var testId = 7 //window.prompt("Enter your testId");
+        var testName = 'lol' //window.prompt("Enter your testName");
+        var classId = 2//window.prompt("Enter your classId");
+        var ClasseName ='מתמטיקה'// window.prompt("Enter your ClasseName");
+        var questionId = 1 // window.prompt("Enter your questionId");
+        var questionText = 'למה'//window.prompt("Enter your questionText");
+        var AnswerId = 1//window.prompt("Enter your AnswerId");
+        var AnswereTxt = 'כובע' //window.prompt("Enter your AnswereTxt");
+
+        const data = {
+            testId:Number(testId),
+            testName:testName,
+            classId:Number(classId),
+            ClasseName:ClasseName,
+            questions: [{
+                questionId:Number(questionId),
+                questionText:questionText,
+                ansers: [{
+                    AnswerId:Number(AnswerId),
+                    AnswereTxt:AnswereTxt,
+                    isTrue:Boolean
+                }]
+
+     } ]
+    
+        }
+
+          createTest({data}).then(() => {
             console.log('ok') ;        
+        }).catch(err =>  console.log('erorr',err));
 
     }
 
@@ -198,22 +225,14 @@ render(){
 
 {/* <ul id="buttonAdmin">
 <li> <button className="btnAdmin" type="button" onClick={this.handle}>  מספר התלמידים שנרשמו לאתר </button></li>
-
 <li> <button className="btnAdmin" type="button" onClick={this.mailFirstStudents}>  המייל של התלמיד הראשון </button></li>
-
 <input type="text" className="btnAdminInput" placeholder='הקלד מספר סידורי של התלמיד' onChange={(e) =>{this.setState({val: e.target.value})}}/>
         {"("+this.state.val+")"} 
-
 <li> <button className="btnAdmin" type="button" onClick={()=>{this.mailStudents(this.state.val)}}>  המייל של תלמיד מסויים </button></li>
-
 <li> <button className="btnAdmin" type="button" onClick={this.nameOfStudents}>  שמות התלמידים </button></li> 
-
-
-
 </ul> */}
 {/* <div>
  <button className="btnAdmin" type="button" onClick={this.nameOfStudents}>  שמות התלמידים </button>
-
  {this.state.isClicked && looped}
  </div> */}
 

@@ -11,11 +11,13 @@ export const userAdd = (newUser) => {
 	const withCredentials = true;
 	return axios.post(baseApi + 'user/add/test', newUser);
 };
-export const createTest = (question) => {
+
+export const createTest = (data) => {
 	console.log('create test')
 	console.log('baseApi',baseApi)
 	const withCredentials = true;
-	return axios.post(baseApi + 'CreateTest', question);
+	// return axios.post(baseApi + 'CreateTest', question);
+	return axios.post(baseApi + 'CreateTest', data);
 };
 export const userLogin = (newUser) => {
 	console.log('login user')
