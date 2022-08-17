@@ -12,17 +12,17 @@ export const SidebarData =[
     // },
  
     {
-        title: "Test21",
+        title: "כניסה למבחנים",
         icon: <QuestionAnswerIcon />,
         link: "/Class"
     },
     {
-        title: "Grade",
+        title: "ציוני מבחנים",
         icon: <GradeIcon />,
         link: "/Grade"
     },
     {
-        title: "Profile",
+        title: "פרופיל אישי",
         icon: <AccountBoxIcon />,
         link: "/Profile"
     },
