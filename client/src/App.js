@@ -54,7 +54,7 @@ console.log('App')
         </Routes>
       </Router >
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 }
