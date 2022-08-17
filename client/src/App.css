@@ -176,11 +176,11 @@ footer {
 }
 .btnAdminRight{
   position:relative; 
-  left:200px;
-   top:85px;
+  left:50px;
+   top:20px;
 }
 .btnAdminLeft{
   position:relative; 
   right:400px;
-   top:-195px;
+   top:-175px;
 }
