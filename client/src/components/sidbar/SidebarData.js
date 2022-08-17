@@ -5,11 +5,11 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import GradeIcon from '@mui/icons-material/Grade';
 export const SidebarData =[
-    {
-        title: "Home",
-        icon: <HomeIcon />,
-        link: "/Home"
-    },
+    // {
+    //     title: "Home",
+    //     icon: <HomeIcon />,
+    //     link: "/Home"
+    // },
  
     {
         title: "Test21",
