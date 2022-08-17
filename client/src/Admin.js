@@ -42,7 +42,9 @@ class Admin extends Component{
             if(res){
                 var myWindow = window.open("", "MsgWindow", "width=1000,height=200");
                 res.data.data.map(item => {
-                    myWindow.document.write(item.email+'*');
+                    // myWindow.document.write("שם התלמיד: "+item.name.first+" "+"מייל התלמיד: " +item.email+"<br><br>");
+                    myWindow.document.write("Name of student: "+item.name.first+" , "+"Mail of student: " +item.email+"<br><br>");
+                    // document.write("<br>");
                     <br/>
                 })
             }
@@ -107,17 +109,44 @@ class Admin extends Component{
 
     searchStudent() {
         const student = window.prompt("Enter name of student");
+        var counter = 0;
         getUsers().then(res => {
             if(res){
                 res.data.data.map(item =>  {
-                    if(item.name.first === student){
+                    if(item.name.first === student && counter === 0){
+                        counter++;
                         alert("פרטי תלמיד:"
                         +"                   "+
                         "מייל התלמיד: "+ item.email +"***" +
                         "שם משפחה: "+item.name.last);
                     }
-                    return null;
                 })
+                if(counter === 0)
+                    alert("המשתמש לא קיים במערכת :(")
+            }
+        }).catch(err =>  console.log('have a err!!!!',err));
+    }
+    grade() {
+        const student = window.prompt("Enter name of student");
+        var counter = 0;
+        getUsers().then(res => {
+            if(res){
+                res.data.data.map(item =>  {
+                    if(item.name.first === student && counter === 0){
+                        
+                        item.grades.map(g => {
+                            counter++;
+                            if(g.testName !== undefined)
+                            {
+                            var myWindow = window.open("", "MsgWindow", "width=1000,height=200");
+                            myWindow.document.write("Name of test: "+g.testName+" , "+"Grade of test: " +g.grade+"<br><br>");
+                            }    
+                        })
+                      
+                    }
+                })
+                if(counter === 0)
+                    alert("אין ציונים:(")
             }
         }).catch(err =>  console.log('have a err!!!!',err));
     }
@@ -126,13 +155,15 @@ class Admin extends Component{
         return(
             <div className="admin">
                 <div id="mainWelcomeAdmin">
-                    <h2>ברוך הבא דף מורה</h2>
+                    <h2 className="pageTeacher">דף מורה</h2>
+                    <h5 className="welcomeTeacher">ברוך הבא,דולב</h5>
                     <div className='btnAdminRight'>
-                        <button className='Admin_btn_1' onClick={this.nameOfStudents}> מיילים תלמידים</button>
+                        <button className='Admin_btn_1' onClick={this.nameOfStudents}> פרטי תלמידים</button>
                         <button className='Admin_btn_1' onClick={this.createTest}> צור מבחן</button>
                     </div>
                     <div className='btnAdminLeft'>
                         <button className='Admin_btn_1' onClick={this.searchStudent}> חיפוש תלמיד </button>
+                        <button className='Admin_btn_1' onClick={this.grade}> ציוני תלמיד </button>
                     </div>
                 </div>
             </div>
