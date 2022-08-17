@@ -55,9 +55,8 @@
 // export default Profile
 
 
-import React,{useState, useEffect, useCallback} from "react";
-import ReactDOM from "react-dom";
-import { set, useForm } from "react-hook-form";
+import React,{useState, useEffect} from "react";
+import {  useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import {findUser} from '../../actions/index'
 import "./Profile.css";
@@ -66,7 +65,6 @@ function Profile() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors }
   } = useForm({
     criteriaMode: "all"
@@ -74,7 +72,7 @@ function Profile() {
   const [userInfo, setUserInfo] = useState(null);
 
 
-  useEffect(async () => { 
+  useEffect(() => { 
     const findUserByEmail = async() => {
       const email = window?.userProfile?.email;
       const {data} = await findUser({email})
@@ -89,7 +87,6 @@ function Profile() {
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
   }; // your form submit function which will invoke after successful validation
-  console.log(watch("example")); // you can watch individual input by pass the name of the input
   console.log('errors',errors); 
   console.log('userInfo',userInfo); 
 

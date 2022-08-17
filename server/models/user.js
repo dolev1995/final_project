@@ -5,42 +5,31 @@ const mongoose = require('mongoose'),
 	SALT_WORK_FACTOR = 10;
 
 	const gradesSchema = new Schema({		
-		testId: Number,
+		testId: String,
 		testName: String,
 		classId:Number,
 		ClasseName:String,
 		grade:Number,
-		dateTest: String
-	})
-
+		dateTest: String})
 const UserSchema = new Schema({
-	name: {
-		first: {
+	name: {first: {
 			type: String,
-			required: false,
-		},
+			required: false,},
 		last: {
 			type: String,
-			required: false,
-		}
-	},
+			required: false,}},
 	password: {
 		type: String,
-		required: false,
-	},
+		required: false,},
 	email: {
 		type: String,
 		required: false,
 		dropDups: true,
 		unique: true,
-		index: true
-	},
+		index: true},
 	grades:{
 		type: [gradesSchema],
-		required: false
-	}
-
-});
+		required: false}});
 
 
 UserSchema.pre('save', function (next) {

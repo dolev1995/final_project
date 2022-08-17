@@ -3,8 +3,7 @@ const { getMaxListeners } = require('process');
 const Item = require('../models/TestM')
 const mongoose = require('mongoose')
 const ObjectId = require('mongoose').Types.ObjectId;
-
-// const te = mongoose.model('Test', mongoose.Schema({
+const { v4: uuidv4} = require('uuid');// const te = mongoose.model('Test', mongoose.Schema({
 //     _id: String,
 //     _nameTest: String
 //   }));
@@ -105,11 +104,21 @@ async function CreateTest (req, res, next)  {
         const body = req.body;
         console.log('body', body);
 
-        const question = body.data
-         console.log('question', question);
-         console.log('questions', question.questions);
+        const test = body.data
+        test.testId = uuidv4(); 
+        test.questions.map(question => {
+            question.questionId = uuidv4(); 
 
-         const item = await Item.create(question);
+            question.ansers.map(awnsers => {
+                awnsers.AnswerId = uuidv4(); 
+                return awnsers;
+            })
+
+            return question;
+
+        })
+
+         const item = await Item.create(test);
         //console.log("testIdnew = " + body.data.testId);
 
 

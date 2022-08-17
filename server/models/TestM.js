@@ -3,20 +3,20 @@ const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 
 const ansersSchema = new Schema({		
-	AnswerId:Number,
+	AnswerId:String,
 	AnswerText:String,
 	isTrue:Boolean
 })
 
 
 const TestSchema = new Schema({
-	testId: Number,
+	testId: String,
 	testName: String,
 	classId:Number,
 	ClasseName:String,
 	questions:{
 		type:Array,
-		questionId:Number,
+		questionId:String,
 		questionText:String,
 		ansers:[ansersSchema]
 	}

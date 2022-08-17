@@ -76,13 +76,14 @@ export const CreateTestAdmin = ({setShow}) => {
             }}
         />
 
-        {/* <label>Test Id</label>
+        {/* <label>הקלד מספר מבחן</label>
 
         <input 
+            placeholder="הקלד מספר מבחן"
             {...register("testId",  {
             required: "You must specify a testId",
             })}
-        /> */}
+        /> 
 
         <ErrorMessage
             errors={errors}
@@ -95,14 +96,16 @@ export const CreateTestAdmin = ({setShow}) => {
                 ))
                 : null;
             }}
-        />
+        /> */}
 
-        {/* <label>classId</label>
+        <label>מספר נושא המבחן:</label>
         <input 
+           placeholder=">מספר נושא המבחן:"     
+
             {...register("classId",  {
             required: "You must specify a classId",
             })}
-        /> */}
+        /> 
         <ErrorMessage
             errors={errors}
             name="classId"

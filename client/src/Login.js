@@ -47,10 +47,6 @@ class Login extends Component {
 
         console.log("register");
         const existUser = {
-        	name: {
-				first: this.state.firstName,
-				last: this.state.lastName
-			},
             password: this.state.password,
 			email: this.state.email
 
@@ -82,11 +78,11 @@ class Login extends Component {
             <div className="login">
                 <h3>כניסה</h3>
 
-<img src={"https://iconarchive.com/download/i91933/icons8/windows-8/User-Interface-Login.ico"} className="imgLogin" alt=" ):תמונה בעייתית"/>
+                <img src={"https://iconarchive.com/download/i91933/icons8/windows-8/User-Interface-Login.ico"} className="imgLogin" alt=" ):תמונה בעייתית"/>
                 <form onSubmit={this.handleSubmit}>
 
-                    <input className='inputRegister' placeholder="דואר אלקטרוני" type="email" value={this.state.fieldName} ref="email" onChange={(event) => this.handleChange(event,"email" )} required />
-                    <input className='inputRegister' placeholder="סיסמה" type="password"  value={this.state.fieldName} ref="password" onChange={(event) => this.handleChange(event,"password" )} required />
+                    <input className='inputRegister' placeholder="דואר אלקטרוני" type="email" value={this.state.fieldName} onChange={(event) => this.handleChange(event,"email" )} required />
+                    <input className='inputRegister' placeholder="סיסמה" type="password"  value={this.state.fieldName}  onChange={(event) => this.handleChange(event,"password" )} required />
 					<input type='submit' className="btn main-btn" value='התחברות'/>
 
 
