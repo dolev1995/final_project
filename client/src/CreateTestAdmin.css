@@ -1,0 +1,56 @@
+body {
+    direction: rtl;
+    /* background-color: rgb(187, 189, 152); */
+    background-color: rgb(223, 224, 213);
+    /* background-image: url(https://www.reba.org.il/images/Pages/1444579700.jpg);
+    min-height: 100vh;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-position: 100% 100%;
+  background-size: 50%; */
+
+
+
+  }
+  .pic{
+      display: flex; 
+     flex-direction:row; 
+  }
+  
+    .subjecTest{
+    direction:rtl;
+    position: relative;
+    left: 55%;
+    color:rgb(255, 0, 81);
+    font-size: 22px;
+    }
+    .subjecTestReally{
+    direction:rtl;
+    position: relative;
+    left: 48%;
+    color:rgb(255, 0, 81);
+    font-size: 22px;
+    }
+  
+  
+     .imgTest{
+    height: 20%;
+    margin-left:18%;
+    width: 30%;
+    } 
+     .imgTest2{
+    height: 20%;
+    margin-right:18%;
+    width: 30%;
+    } 
+     
+    /* top:-320px;  */
+    /* width: 400px;
+    flex-direction:row */
+  
+    .isTrue{
+        font-size: 15px;
+        color: blueviolet;
+    }
