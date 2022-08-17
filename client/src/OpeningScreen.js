@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './App.css';
 import Arrow from './images/arrow.png'
 //import LogOrReg from './LogOrReg'
+import Footer from './Footer'
 
 import {Link} from 'react-router-dom'
 
@@ -42,6 +43,7 @@ render(){
 
                             {/* {this.state.show ? <Link to="/LogOrReg">Login\Register</Link> : null} */}
 					</div>
+                    <Footer/>
 
                     </div>
     )
