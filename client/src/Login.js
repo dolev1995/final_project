@@ -4,6 +4,7 @@ import { withParams } from "./Hoc";
 import {userLogin} from './actions/index'
 import IconLogin from './IconLogin.ico'
 //import logo from './logo.svg';
+import {Link} from 'react-router-dom'
 
 import './App.css';
 
@@ -87,6 +88,8 @@ class Login extends Component {
 
 
                     </form>
+                    <Link to="/Register">
+                        <button type="button" className='btn_logorregLogin'>עוד לא רשום?! הירשם כאן! </button></Link>
             </div>
 
         );
