@@ -16,6 +16,7 @@ function Sidebar() {
 
   return (
       <div className='Sidebar'>
+        <h4>שלום אוהד</h4>
         <h1>מסך תפריט:</h1>
           <ul className='SidebarList'></ul>
           <ul>
@@ -27,6 +28,8 @@ function Sidebar() {
         </li>);
      })}
      </ul>
+     <label className='divah'>נתקלת בבעיה טכנית?<small style={{marginRight: 10 + 'px'}}><a href="mailto:2dolev20@gmail.com">**פנה למנהל המערכת על מנת
+								 לדווח על בעיה טכנית</a></small></label>
       </div>
   );
 }
