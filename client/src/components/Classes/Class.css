@@ -2,7 +2,7 @@
     height: 100%;
    width: 100%;
    
-   text-shadow: 1px 1px 5px #fff, 1px 1px 8px #fff, 1px 1px 10px #fff, 1px 1px 12px #fff;  
+   /* text-shadow: 1px 1px 5px #fff, 1px 1px 8px #fff, 1px 1px 10px #fff, 1px 1px 12px #fff;   */
    margin: 0;
    background: rgb(221,209,183);
    background: radial-gradient(circle, rgba(221,209,183,1) 0%, rgba(221,209,183,1) 100%);
