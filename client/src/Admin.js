@@ -51,6 +51,40 @@ class Admin extends Component{
             }
         })
     }
+    countofgradeOfStudents(){
+        
+        var counter = 0;
+        var nameStudent ="ooooo";
+        var max = -1;
+        getUsers().then(res => {
+            if(res){
+                res.data.data.map(item =>  {
+                   // if(item.name.first === student && counter === 0){
+                        
+                        // item.grades.map(g => {
+                        //     counter++;
+                        //     if(g.testName !== undefined)
+                        //     {
+                        //    // var myWindow = window.open("", "MsgWindow", "width=1000,height=200");
+                        //    // myWindow.document.write("Name of test: "+g.testName+" , "+"Grade of test: " +g.grade+"<br><br>");
+                        //     }
+                        //     console.log(g.length)    
+                        // })
+                        console.log(item.grades.length)
+                        if(max < item.grades.length)
+                        {
+                            max = item.grades.length;
+                            nameStudent = item.name.first +' ' + item.name.last
+                        }
+                        
+                      
+                   // }
+                })
+                alert("התלמיד המטיין הוא: " + nameStudent)
+               
+            }
+        }).catch(err =>  console.log('have a err!!!!',err));
+    }
 
     mailStudents(e){
         getUsers().then(res => {
@@ -161,6 +195,7 @@ class Admin extends Component{
                     <h5 className="welcomeTeacher">ברוך הבא,דולב</h5>
                     <div className='btnAdminRight'>
                         <button className='Admin_btn_1' onClick={this.nameOfStudents}> פרטי תלמידים</button>
+                        <button className='Admin_btn_1' onClick={this.countofgradeOfStudents}> התלמיד המצטיין</button>
                         <button className='Admin_btn_1' onClick={this.createTest}> צור מבחן</button>
                     </div>
                     <div className='btnAdminLeft'>
@@ -168,6 +203,8 @@ class Admin extends Component{
                         <button className='Admin_btn_1' onClick={this.grade}> ציוני תלמיד </button>
                         {/* <Link to="/GrdStd">
                         <button type="button" className='btn_logorregLogin'> ציוני תלמיד</button></Link>     */}
+                         <Link to="/Class">
+                        <button type="button" className='serchTest'> צפיה במבחנים הקיימים</button></Link>     
                                         </div>
                 </div>
             </div>
