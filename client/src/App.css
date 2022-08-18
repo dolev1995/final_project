@@ -99,6 +99,15 @@ text-shadow:1px 1px 5px #fff,1px 1px 5px #fff,1px 1px 5px #fff,1px 1px 5px #fff,
 {
   font-size: 20px;
 }
+.serchTest
+{
+  /* font-size: 20px; */
+  background: #fff !important;
+  color:  #3910d1 !important;
+  font-size: 30px;
+  position: relative;
+
+}
 
 
 button {
@@ -191,12 +200,12 @@ footer {
 .btnAdminRight{
   position:relative; 
   left:100px;
-   top:20px;
+   top:30px;
 }
 .btnAdminLeft{
   position:relative; 
   right:300px;
-   top:-175px;
+   top:-260px;
 }
 .pageTeacher{
   position: relative;
