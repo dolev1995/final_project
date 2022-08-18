@@ -262,7 +262,7 @@ export const CreateTestAdmin = ({setShow}) => {
 
                             }}
                         >
-                            מחיקת שאלה
+                            מחיקת תשובה
                         </button>
 
                         {[...Array(answerNumber[i])].map((x, j) =>{
