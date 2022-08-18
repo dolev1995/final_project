@@ -82,9 +82,19 @@
 .divah{
   font-size: 25px;
   position: relative;
-  top:50px;
+  top:5px;
   /* background-color: rgb(30, 255, 0); */
+  color:rgb(212, 26, 26);
+}
+.divahTeacher{
+  font-size: 25px;
+  position: relative;
+  top:50px;
   color:rgb(212, 26, 26);
 }
 
 
+.imgMail{
+  width: 30px;
+  height: 30px;
+}
