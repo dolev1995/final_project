@@ -3,6 +3,7 @@ import './App.css';
 import {getUsers} from './actions'
 import {createTest} from './actions'
 import {CreateTestAdmin} from './CreateTestAdmin'
+import {Link} from 'react-router-dom'
 
 
 class Admin extends Component{
@@ -150,6 +151,7 @@ class Admin extends Component{
             }
         }).catch(err =>  console.log('have a err!!!!',err));
     }
+   
 
     mainPageRender = () => {
         return(
@@ -164,7 +166,9 @@ class Admin extends Component{
                     <div className='btnAdminLeft'>
                         <button className='Admin_btn_1' onClick={this.searchStudent}> חיפוש תלמיד </button>
                         <button className='Admin_btn_1' onClick={this.grade}> ציוני תלמיד </button>
-                    </div>
+                        {/* <Link to="/GrdStd">
+                        <button type="button" className='btn_logorregLogin'> ציוני תלמיד</button></Link>     */}
+                                        </div>
                 </div>
             </div>
         )
