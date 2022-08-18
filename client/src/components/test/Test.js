@@ -64,6 +64,7 @@ export default function Test() {
         <div className="postGrade">
          <h1>הציון שלך הוא</h1>
          <h1>{data.grades[data.grades.length-1].grade} </h1>
+         <img src={"https://stmarycs.net/pictures/2015/10/test-clip-art-cpa-school-test.png"} className="imgtst" alt=" ):תמונה בעייתית"/>
 
         </div>
     )
